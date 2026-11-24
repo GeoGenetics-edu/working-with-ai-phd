@@ -11,7 +11,7 @@ Slides from the opening talk of the "Working with AI" session at the Globe PhD R
 
 ## How to use
 
-Open the slides link. Move with the arrow keys, Page Up/Down or the buttons at the bottom (move the mouse to show them). Some slides reveal one step per key press.
+Open the slides link. Move with the arrow keys, Page Up/Down or the controls behind the small arrow in the bottom-left corner. Press F for full screen. Some slides reveal one step per key press.
 
 ## Technical details
 
