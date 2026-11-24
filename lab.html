@@ -44,7 +44,7 @@ h1{font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1.08;letter-spacin
 .btn.quiet{background:transparent;color:var(--ink);border:1px solid #B4BDC2;font-weight:400}
 .btn:disabled{opacity:.45;cursor:default}
 .note{font-size:14px;color:var(--mut);margin-top:12px}
-/* overview */
+
 .ex{border-top:1px solid var(--ink);margin:0 0 40px}
 .ex div{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:baseline}
 .ex b{font-weight:400;font-size:13px;color:var(--mut)}
@@ -54,14 +54,14 @@ h1{font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1.08;letter-spacin
 .plist li{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule)}
 .plist strong{display:block;font-size:19px}
 .plist span{color:var(--mut);font-size:15px}
-/* tokens */
+
 input[type=text]{font:20px var(--sans);width:100%;max-width:560px;padding:10px 12px;border:1px solid #B4BDC2;border-radius:4px;background:#fff;color:var(--ink)}
 .toks{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .tk{display:flex;flex-direction:column;align-items:center;gap:6px}
 .tk i{font-style:normal;font:22px var(--mono);padding:8px 11px;border:1.5px solid var(--ult);color:var(--ult);border-radius:3px;white-space:pre}
 .tk small{font:13px var(--mono);color:var(--mut)}
 .count{margin-top:14px;font-size:15px;color:var(--mut)}
-/* sentences */
+
 .sents{list-style:none;padding:0;margin:0}
 .sents li{margin:0 0 8px}
 .sents button{width:100%;text-align:left;background:transparent;border:1px solid var(--rule);border-radius:4px;padding:10px 14px;font:19px/1.4 var(--serif);color:var(--ink)}
@@ -74,14 +74,14 @@ input[type=text]{font:20px var(--sans);width:100%;max-width:560px;padding:10px 1
 .bar .fill{display:block;height:100%;background:var(--ult);width:0;transition:width .35s}
 .bar.th .fill{background:var(--sage)}
 .bar b{text-align:right;font-variant-numeric:tabular-nums}
-/* replies */
+
 .reply{font:24px/1.4 var(--serif);margin:20px 0 6px;min-height:34px}
 .runs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .run{font:15px var(--sans);padding:6px 10px;border:1px solid var(--ult);border-radius:3px}
 .run.t{border-color:var(--sage)}
 .weights{display:flex;gap:28px;margin:18px 0 4px;font:15px var(--mono);color:var(--mut)}
 .weights b{color:var(--ink);font-weight:600}
-/* window */
+
 .window{border:1px solid var(--ink);border-radius:4px;padding:14px 16px;margin:16px 0;background:#fff}
 .window h3{margin:0 0 8px;font-size:13px;font-weight:400;color:var(--mut)}
 .wline{font:17px/1.45 var(--serif);padding:8px 10px;margin:0 0 6px;background:#F0F2F3;border-radius:3px}
@@ -93,7 +93,7 @@ input[type=text]{font:20px var(--sans);width:100%;max-width:560px;padding:10px 1
 .who{display:flex;gap:10px;margin:6px 0 12px}
 .who span{font-size:14px;padding:5px 10px;border:1px solid var(--rule);border-radius:3px;color:var(--mut)}
 .who span.act{border-color:var(--ult);color:var(--ult);font-weight:600}
-/* evaluation */
+
 table{border-collapse:collapse;width:100%;max-width:600px;font-size:17px}
 th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--rule)}
 th{font-weight:400;font-size:13px;color:var(--mut)}
@@ -158,7 +158,7 @@ pre.code .bad{background:#F6E3E3}
  .ex div{grid-template-columns:1fr;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-.train{margin:0 0 22px}.train .task{margin-bottom:10px}.box.act[inert]~*{} .train .sents button{cursor:default}body:has(.box.act:not([inert])) .train .sents button{cursor:pointer}textarea{width:100%;font:15px/1.55 var(--mono);padding:10px 12px;border:1px solid #B4BDC2;border-radius:4px;background:#fff;color:var(--ink);resize:vertical}.row{display:flex;flex-wrap:wrap;gap:22px;align-items:end;margin:16px 0 4px}.row label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--mut)}.row input[type=text]{max-width:420px}select{font:16px var(--sans);padding:9px 10px;border:1px solid #B4BDC2;border-radius:4px;background:#fff;color:var(--ink)}.seg.wrap{flex-wrap:wrap}.tasks{margin:30px 0 0;padding:16px 0 0 22px;border-top:1px solid var(--rule);font-size:16px;line-height:1.5}.tasks li{margin:0 0 8px}.tasks::before{content:"Try this";display:block;margin:0 0 8px -22px;font-size:13px;font-weight:600;color:var(--mut)}.gens{margin-top:12px}.gen{font:18px/1.45 var(--serif);padding:8px 12px;border-left:2px solid var(--ult);background:#fff;margin:0 0 6px}.gen small{display:block;font:12px var(--sans);color:var(--mut);margin-top:2px}.alnbox{font:17px/1.55 var(--mono);letter-spacing:.14em;background:#fff;border:1px solid var(--rule);border-radius:4px;padding:10px 14px;margin:8px 0 4px;overflow:auto}.alnrow{display:flex;gap:14px}.alnrow small{color:var(--mut);letter-spacing:0;font:12px var(--sans);width:14px;padding-top:4px}.alnrow b{color:#fff;background:var(--ult);font-weight:600}.alnrow u{text-decoration:none;color:var(--ult)}.qpos{font:inherit;letter-spacing:0;border:1.5px dashed var(--sage);background:#fff;color:var(--ink);padding:0 4px;margin:0 2px;border-radius:2px}.qpos[aria-pressed=true]{border-style:solid;border-color:var(--ult);background:var(--pale);color:var(--ult)}.askbox{border:1px solid var(--ult);border-radius:4px;background:#fff;padding:12px 14px;margin:0 0 14px}.askbox p{margin:0 0 10px}.wline.badl{background:#F6E3E3}.wline pre.code{margin:6px 0 0;font-size:13px}.hl.bad{background:#F6E3E3}.ci{margin-top:18px;max-width:640px}.cirow{display:grid;grid-template-columns:190px 1fr;gap:12px;align-items:center;margin:0 0 10px;font-size:15px}.citr{position:relative;height:18px;background:var(--rule)}.cibar{position:absolute;top:4px;height:10px;background:#B9C3EE}.cidot{position:absolute;top:2px;width:3px;height:14px;background:var(--ult);margin-left:-1px}.cibarline{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--red)}.ciax{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}.arows{display:grid;gap:10px;margin:8px 0 0}.arow{display:grid;grid-template-columns:170px 1fr 120px;gap:16px;align-items:center}.arow .tk{align-items:flex-start}.arow .tk i{font-size:19px}.aw{font-size:13px;color:var(--mut);line-height:1.35}.aw b{color:var(--ink)}.mix{display:flex;gap:8px;align-items:center;font-size:16px;color:var(--ink)}.mix .btn{padding:4px 10px;font-size:14px}.row input[type=range]{width:220px}.tplot{width:100%;max-width:600px;height:180px;background:#fff;border:1px solid var(--rule);margin-top:16px}.tlog{max-width:760px}.tlog td,.tlog th{padding:7px 8px;font-size:15px;white-space:nowrap}.tlog .cf{color:var(--ult)}.tlog .ct{color:#5B6670}.tleg{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;color:var(--mut);margin:0 0 6px}.tleg span::before{content:"";display:inline-block;width:18px;height:0;vertical-align:middle;margin-right:6px;border-top:2px solid}.tleg .lp::before{border-color:var(--ult)}.tleg .lt::before{border-color:var(--red);border-top-style:dashed}.tleg .ll::before{border-color:var(--sage)}.rflow{display:grid;gap:18px;margin:18px 0 0}.rstep{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}.rstep>span{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ult);color:var(--ult);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}.rstep b{font-size:16px}.rlist{list-style:none;padding:0;margin:0;display:grid;gap:6px}.rlist li{border:1px solid var(--rule);border-radius:4px;padding:8px 12px;background:transparent}.rlist li.top{border-color:var(--ult);background:#fff}.rlist small{color:var(--mut);font-size:12px}.rverdict{font-size:16px;line-height:1.5;margin:4px 0 0}.rverdict .ok{color:var(--ult)}.rverdict .no{color:var(--red)}#rin{max-width:460px}.estep{margin:0 0 18px;font-size:17px}.seg.inline{display:inline-flex;margin:0 6px;vertical-align:middle}.dots{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 18px;max-width:640px;min-height:12px}.dots i{width:12px;height:12px;border-radius:2px;background:var(--ult)}.dots i.n{background:#E3B7B8}.ci1{max-width:640px;margin:14px 0 0}.ci1 .citr{height:22px}.ci1 .cibar{top:5px;height:12px}.ci1 .cidot{top:3px;height:16px}.copilot{margin:22px 0 0;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--sage);background:#fff;border-radius:3px}.copilot h3{margin:0 0 4px;font-size:14px;font-weight:600}.copilot ol{margin:0;padding-left:20px;font-size:16px;line-height:1.5}.copilot li{margin:0 0 6px}.cl{margin:0 0 36px;padding-left:22px;font:18px/1.5 var(--serif)}.cl li{padding:8px 0;border-bottom:1px solid var(--rule)}.cl b{font:600 15px var(--sans)}</style>
+.train{margin:0 0 22px}.train .task{margin-bottom:10px}.box.act[inert]~*{} .train .sents button{cursor:default}body:has(.box.act:not([inert])) .train .sents button{cursor:pointer}textarea{width:100%;font:15px/1.55 var(--mono);padding:10px 12px;border:1px solid #B4BDC2;border-radius:4px;background:#fff;color:var(--ink);resize:vertical}.row{display:flex;flex-wrap:wrap;gap:22px;align-items:end;margin:16px 0 4px}.row label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--mut)}.row input[type=text]{max-width:420px}select{font:16px var(--sans);padding:9px 10px;border:1px solid #B4BDC2;border-radius:4px;background:#fff;color:var(--ink)}.seg.wrap{flex-wrap:wrap}.tasks{margin:30px 0 0;padding:16px 0 0 22px;border-top:1px solid var(--rule);font-size:16px;line-height:1.5}.tasks li{margin:0 0 8px}.tasks::before{content:"Try this";display:block;margin:0 0 8px -22px;font-size:13px;font-weight:600;color:var(--mut)}.gens{margin-top:12px}.gen{font:18px/1.45 var(--serif);padding:8px 12px;border-left:2px solid var(--ult);background:#fff;margin:0 0 6px}.gen small{display:block;font:12px var(--sans);color:var(--mut);margin-top:2px}.alnbox{font:17px/1.55 var(--mono);letter-spacing:.14em;background:#fff;border:1px solid var(--rule);border-radius:4px;padding:10px 14px;margin:8px 0 4px;overflow:auto}.alnrow{display:flex;gap:14px}.alnrow small{color:var(--mut);letter-spacing:0;font:12px var(--sans);width:14px;padding-top:4px}.alnrow b{color:#fff;background:var(--ult);font-weight:600}.alnrow u{text-decoration:none;color:var(--ult)}.qpos{font:inherit;letter-spacing:0;border:1.5px dashed var(--sage);background:#fff;color:var(--ink);padding:0 4px;margin:0 2px;border-radius:2px}.qpos[aria-pressed=true]{border-style:solid;border-color:var(--ult);background:var(--pale);color:var(--ult)}.askbox{border:1px solid var(--ult);border-radius:4px;background:#fff;padding:12px 14px;margin:0 0 14px}.askbox p{margin:0 0 10px}.wline.badl{background:#F6E3E3}.wline pre.code{margin:6px 0 0;font-size:13px}.hl.bad{background:#F6E3E3}.ci{margin-top:18px;max-width:640px}.cirow{display:grid;grid-template-columns:190px 1fr;gap:12px;align-items:center;margin:0 0 10px;font-size:15px}.citr{position:relative;height:18px;background:var(--rule)}.cibar{position:absolute;top:4px;height:10px;background:#B9C3EE}.cidot{position:absolute;top:2px;width:3px;height:14px;background:var(--ult);margin-left:-1px}.cibarline{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--red)}.ciax{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}.arows{display:grid;gap:10px;margin:8px 0 0}.arow{display:grid;grid-template-columns:170px 1fr 120px;gap:16px;align-items:center}.arow .tk{align-items:flex-start}.arow .tk i{font-size:19px}.aw{font-size:13px;color:var(--mut);line-height:1.35}.aw b{color:var(--ink)}.mix{display:flex;gap:8px;align-items:center;font-size:16px;color:var(--ink)}.mix .btn{padding:4px 10px;font-size:14px}.row input[type=range]{width:220px}.tplot{width:100%;max-width:600px;height:180px;background:#fff;border:1px solid var(--rule);margin-top:16px}.tlog{max-width:760px}.tlog td,.tlog th{padding:7px 8px;font-size:15px;white-space:nowrap}.tlog .cf{color:var(--ult)}.tlog .ct{color:#5B6670}.tleg{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;color:var(--mut);margin:0 0 6px}.tleg span::before{content:"";display:inline-block;width:18px;height:0;vertical-align:middle;margin-right:6px;border-top:2px solid}.tleg .lp::before{border-color:var(--ult)}.tleg .lt::before{border-color:var(--red);border-top-style:dashed}.tleg .ll::before{border-color:var(--sage)}.rflow{display:grid;gap:18px;margin:18px 0 0}.rstep{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}.rstep>span{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ult);color:var(--ult);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}.rstep b{font-size:16px}.rlist{list-style:none;padding:0;margin:0;display:grid;gap:6px}.rlist li{border:1px solid var(--rule);border-radius:4px;padding:8px 12px;background:transparent}.rlist li.top{border-color:var(--ult);background:#fff}.rlist small{color:var(--mut);font-size:12px}.rverdict{font-size:16px;line-height:1.5;margin:4px 0 0}.rverdict .ok{color:var(--ult)}.rverdict .no{color:var(--red)}#rin{max-width:460px}.estep{margin:0 0 18px;font-size:17px}.seg.inline{display:inline-flex;margin:0 6px;vertical-align:middle}.dots{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 18px;max-width:640px;min-height:12px}.dots i{width:12px;height:12px;border-radius:2px;background:var(--ult)}.dots i.n{background:#E3B7B8}.ci1{max-width:640px;margin:14px 0 0}.ci1 .citr{height:22px}.ci1 .cibar{top:5px;height:12px}.ci1 .cidot{top:3px;height:16px}.copilot{margin:22px 0 0;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--sage);background:#fff;border-radius:3px}.copilot h3{margin:0 0 4px;font-size:14px;font-weight:600}.copilot ol{margin:0;padding-left:20px;font-size:16px;line-height:1.5}.copilot li{margin:0 0 6px}.cl{margin:0 0 36px;padding-left:22px;font:18px/1.5 var(--serif)}.cl li{padding:8px 0;border-bottom:1px solid var(--rule)}.cl b{font:600 15px var(--sans)}.pfb{display:none;margin:12px 0 0;font:16px/1.5 var(--sans)}.pfb.show{display:block}.pfb b{color:var(--ult)}.pfb.miss b{color:var(--red)}.opts button.right{border-color:var(--ult)}</style>
 <script src="tokenizer.js" defer></script>
 </head>
 <body>
@@ -193,37 +193,37 @@ function nav(cur){
 }
 function page(id,title,lede,body,take){
   const o=OPT.indexOf(id),k=ORDER.indexOf(id),prev=o>=0?(OPT[o-1]||'discussion'):ORDER[k-1],next=o>=0?OPT[o+1]:ORDER[k+1],P=PRED[id];
-  const pred=P?`<div class="predict"><h2>Before you try</h2><p>${P.q}</p><div class="opts" id="popts">${P.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false">${o}</button>`).join('')}</div></div>`:'';
+  const pred=P?`<div class="predict"><h2>Before you try</h2><p>${P.q}</p><div class="opts" id="popts">${P.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false">${o}</button>`).join('')}</div><p class="pfb" id="pfb" aria-live="polite"></p></div>`:'';
   const steps=CORE.flatMap(p=>p[2].map(x=>x[0])),si=steps.indexOf(id);
   return `${si>=0?`<p class="stepno">Step ${si+1} of ${steps.length}</p>`:o>=0?'<p class="stepno">Optional</p>':''}<h1>${title}</h1>${lede?`<p class="lede">${lede}</p>`:''}${pred}<div class="box act">${body}</div>
   <div class="take"><div class="fb" id="fb" aria-live="polite"></div>${take?`<p class="tk-text show" id="tk">${take}</p>`:''}<div class="nav">${prev?`<a class="btn ghost" href="#${prev}">Back</a>`:''}${next?`<a class="btn" href="#${next}">Next: ${NAME[next]}</a>`:''}</div></div>`;
 }
 let guess=null,finished=false,pendingDetail=null,curId=null;
-function initPredict(id){guess=null;finished=false;pendingDetail=null;curId=id;const P=PRED[id];if(!P)return;document.querySelectorAll('#popts button').forEach(b=>b.onclick=()=>{if(finished)return;guess=+b.dataset.i;document.querySelectorAll('#popts button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(pendingDetail)done(id,pendingDetail)})}
-function done(id,detail){if(finished||id!==curId)return;const P=PRED[id];if(!P)return;if(guess===null){pendingDetail=detail;return}finished=true;const ok=guess===P.ans;const fb=$('#fb');fb.className='fb show'+(ok?'':' miss');fb.innerHTML=`<b>${ok?'As you expected.':'Not what you expected.'}</b>You picked “${P.opts[guess]}”. ${detail}`;document.querySelectorAll('#popts button').forEach(b=>b.disabled=true)}
+function initPredict(id){guess=null;finished=false;curId=id;const P=PRED[id];if(!P)return;document.querySelectorAll('#popts button').forEach(b=>b.onclick=()=>{if(finished)return;finished=true;guess=+b.dataset.i;document.querySelectorAll('#popts button').forEach(x=>{x.setAttribute('aria-pressed',x===b);x.disabled=true;if(+x.dataset.i===P.ans)x.classList.add('right')});const ok=guess===P.ans;const fb=$('#pfb');fb.className='pfb show'+(ok?'':' miss');fb.innerHTML=`<b>${ok?'Right.':'Not quite.'}</b> ${P.why}`})}
+function done(){}
 const PRED={
- tokens:{q:'The same sentence in English and in Danish: which one becomes more tokens?',opts:['English','Danish','About the same'],ans:1},
- prediction:{q:'Look at the training text below the line. Counting only the last two words, “submit on”, which day comes next most often?',opts:['Friday','Thursday','They are tied'],ans:0},
- sampling:{q:'You turn the temperature down to 0 so the model always picks its most likely word. How often is the reply now correct (Thursday)?',opts:['Always','About as often as before','Never'],ans:2},
- attention:{q:'“Drafts for comments: submit on …” and “Final reports: submit on …” end with the same two words. Will the model predict the same day for both?',opts:['Yes, only the last words count','No, earlier words can change it'],ans:1},
- training:{q:'The model is trained on 3 sentences with Friday and 2 with Thursday, over and over. Where does it end up?',opts:['Friday 100%','Friday about 60%','Stays at 50/50'],ans:1},
- beyond:{q:'At a position where 11 of 12 related sequences share the same residue, will the prediction be right for a new fragment?',opts:['Yes, 92% is near certain','Not necessarily'],ans:1},
- retrieval:{q:'The assistant can search this year’s and last year’s course notice. Will it always use this year’s?',opts:['Yes, it is the better match','No, the search matches words, not dates'],ans:1},
- agents:{q:'The agent’s script runs without errors and reports a mean. Is the mean right?',opts:['Yes, it ran without errors','Not necessarily'],ans:1},
- evaluation:{q:'The assistant got the deadline right in 7 of 10 tries. What does that tell you about its real success rate?',opts:['It is 70%','Somewhere between about 40% and 90%','Nothing at all'],ans:1},
+ tokens:{q:'The same sentence in English and in Danish: which one becomes more tokens?',opts:['English','Danish','About the same'],ans:1,why:'Danish. Common English words are one token each; Danish words are split into more pieces. Load both examples below to see by how much.'},
+ prediction:{q:'Look at the training text below the line. Counting only the last two words, “submit on”, which day comes next most often?',opts:['Friday','Thursday','They are tied'],ans:0,why:'Friday: 3 of the 5 “submit on” sentences continue with Friday, 2 with Thursday. Counting only two words ignores “Drafts for comments”.'},
+ sampling:{q:'You turn the temperature down to 0 so the model always picks its most likely word. How often is the reply now correct (Thursday)?',opts:['Always','About as often as before','Never'],ans:2,why:'Never. At temperature 0 it always picks the most likely word, Friday, which is wrong here.'},
+ attention:{q:'“Drafts for comments: submit on …” and “Final reports: submit on …” end with the same two words. Will the model predict the same day for both?',opts:['Yes, only the last words count','No, earlier words can change it'],ans:1,why:'No. Attention lets earlier words such as “comments” or “reports” shift the prediction. Use the sliders below to see how much.'},
+ training:{q:'The model is trained on 3 sentences with Friday and 2 with Thursday, over and over. Where does it end up?',opts:['Friday 100%','Friday about 60%','Stays at 50/50'],ans:1,why:'Friday about 60%. Training settles at the share of Friday in the data, not at 100%, because the data itself disagrees.'},
+ beyond:{q:'At a position where 11 of 12 related sequences share the same residue, will the prediction be right for a new fragment?',opts:['Yes, 92% is near certain','Not necessarily'],ans:1,why:'Not necessarily.'},
+ retrieval:{q:'The assistant can search this year’s and last year’s course notice. Will it always use this year’s?',opts:['Yes, it is the better match','No, the search matches words, not dates'],ans:1,why:'No. The search matches words, not dates, so last year’s notice can come first. Question B below shows it.'},
+ agents:{q:'The agent’s script runs without errors and reports a mean. Is the mean right?',opts:['Yes, it ran without errors','Not necessarily'],ans:1,why:'Not necessarily. Here the script counts the missing value as zero, runs without errors and reports the wrong mean.'},
+ evaluation:{q:'The assistant got the deadline right in 7 of 10 tries. What does that tell you about its real success rate?',opts:['It is 70%','Somewhere between about 40% and 90%','Nothing at all'],ans:1,why:'Somewhere between about 40% and 90%. Ten runs leave a wide range; run more below to narrow it.'},
 };
 const bar=(label,v,cls='',txt=null)=>`<div class="bar${cls?' '+cls:''}"><span>${label}</span><span class="tr"><span class="fill" style="width:${Math.max(0,Math.min(1,v))*100}%"></span></span><b>${txt??Math.round(v*100)+'%'}</b></div>`;
 const bars=(f,t)=>`<div class="bars">${bar('Friday',f)}${bar('Thursday',t,'th')}</div>`;
 
 const V={};
 V.home=()=>`<h1>Language Model Lab</h1>
-<p class="lede">How a language model produces a reply, and what is built around it. One running example: a course assistant that gives the wrong submission deadline. ${CORE.flatMap(p=>p[2]).length} steps, about 40 minutes in pairs.</p>
+<p class="lede">A course assistant gives a student the wrong submission deadline. In ${CORE.flatMap(p=>p[2]).length} steps you look at where that answer comes from and how you would check it. Work in pairs; it takes about 35 minutes.</p>
 <div class="ex"><div><b>Student</b><span>When do submissions close?</span></div><div><b>Assistant</b><span class="wrong">You can submit on Friday.</span></div><div><b>Course notice</b><span>${NOTICE}</span></div></div>
 <ol class="plist">${CORE.map(([n,q,items])=>`<li><span class="num">${n}</span><div><strong>${q}</strong><span>${items.map(i=>i[1]).join(', ')}</span></div></li>`).join('')}</ol>
-<p class="note" style="margin:-20px 0 28px">Work in pairs on one laptop. Every step has a “Try this” list; you don’t need to finish them all.</p>
+<p class="note" style="margin:-20px 0 28px">You don’t need to finish every “Try this” list.</p>
 <div class="nav"><a class="btn" href="#tokens">Next: Tokens</a></div>`;
 
-/* ---------- 1 tokens ---------- */
+
 const TPRE=[
  ['English','The samples were sequenced twice to check for contamination.'],
  ['Danish','Prøverne blev sekventeret to gange for at tjekke for kontaminering.'],
@@ -255,7 +255,7 @@ function initTokens(){const log=new Map();let tm=null;
  document.querySelectorAll('#tpre button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tpre button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#tin').value=TPRE[+b.dataset.i][1];run()});
  $('#tin').oninput=()=>{document.querySelectorAll('#tpre button').forEach(x=>x.setAttribute('aria-pressed','false'));run()};run();addEventListener('tokenizer-ready',run,{once:true})}
 
-/* ---------- 2 prediction: an n-gram model you can edit ---------- */
+
 const CORPUS=`You can submit on Friday before noon.
 Late work: submit on Friday with a note to the teacher.
 Drafts: submit on Thursday for comments.
@@ -290,7 +290,7 @@ function initPrediction(){const tried=new Set();
  $('#pgen').onclick=()=>{const n=+$('#pn').value;const g=generate($('#pcorp').value,$('#pctx').value,n,14);const full=$('#pctx').value+' '+g.join(' ').replace(/ ([.,?!])/g,'$1');const inCorpus=$('#pcorp').value.split('\n').some(l=>l.trim()&&full.toLowerCase().includes(l.trim().toLowerCase().replace(/[.]$/,'')));
   $('#pouts').insertAdjacentHTML('afterbegin',`<div class="gen"><span>${esc(full)}</span><small>${g.length?(inCorpus?'contains a training sentence':'not in the training text'):'no continuation'}</small></div>`)};show()}
 
-/* ---------- 3 sampling with temperature ---------- */
+
 const CAND=[['Friday',.55],['Thursday',.35],['Monday',.06],['the',.04]];
 const tempP=T=>{if(T<=0.001){return CAND.map((c,i)=>i===0?1:0)}const l=CAND.map(([,p])=>Math.log(p)/T);const m=Math.max(...l);const e=l.map(x=>Math.exp(x-m));const s=e.reduce((a,b)=>a+b,0);return e.map(x=>x/s)};
 V.sampling=()=>page('sampling','Sampling','A chatbot does not always pick the most likely next token. It draws one at random, weighted by the probabilities. The temperature setting reshapes those probabilities before the draw.',
@@ -314,7 +314,7 @@ function initSampling(){let runs=[];const tset=new Set();
  document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>ask(+b.dataset.n));$('#sreset').onclick=()=>{runs=[];$('#sreply').textContent='';showRuns()};
  $('#stemp').oninput=()=>{showP();runs=[];showRuns();$('#sreply').textContent=''};showP()}
 
-/* ---------- attention ---------- */
+
 const ATT={comments:{label:'Drafts for comments: submit on …',w:[['Drafts',.25],['for',.6],['comments',.05],['submit',.6],['on',.6]],learned:[3,0,4,0,0]},reports:{label:'Final reports: submit on …',w:[['Final',.7],['reports',.95],['submit',.6],['on',.6]],learned:[2,4,0,0]}};
 V.attention=()=>page('attention','Attention','Counting with a fixed context either ignores earlier words or finds nothing. Attention gives every earlier token a score. The scores are turned into weights that add up to 100% (a softmax), and the prediction is a weighted mix of what each token points to.',
  `<div class="seg wrap" id="actx">${Object.entries(ATT).map(([k,a],i)=>`<button data-c="${k}" aria-pressed="${i===0}">${a.label}</button>`).join('')}</div>
@@ -338,7 +338,7 @@ function initAttention(){let c='comments';let S={comments:ATT.comments.w.map(()=
  document.querySelectorAll('#actx button').forEach(b=>b.onclick=()=>{c=b.dataset.c;show()});
  $('#aeven').onclick=()=>{S[c]=S[c].map(()=>0);show()};$('#alearn').onclick=()=>{S[c]=[...ATT[c].learned];show()};show()}
 
-/* ---------- training ---------- */
+
 V.training=()=>page('training','Training','A real model stores weights, not counts. Training shows it one example at a time: the model makes a prediction, the loss measures how wrong it was, and every weight is nudged so the word that actually came next becomes a little more likely. The size of the nudge is the learning rate.',
  `<p class="task">A tiny model with two weights, one for Friday and one for Thursday, learns what comes after “submit on”. Its starting weights happen to favour Thursday: it begins at 10% Friday.</p>
  <div class="row"><label>Training sentences <span class="mix"><button class="btn quiet" id="tmf" aria-label="One Friday sentence fewer">−</button> <b id="tdata"></b> <button class="btn quiet" id="tpf" aria-label="One Friday sentence more">+</button></span></label>
@@ -374,7 +374,7 @@ function initTraining(){const W0=1.1;let nF=3,nT=2,wf=-W0,wt=W0,step=0,hist=[{p:
  $('#tpf').onclick=()=>{if(nT>0){nF++;nT--;reset()}};$('#tmf').onclick=()=>{if(nF>0){nF--;nT++;reset()}};
  $('#tlr').oninput=()=>show();show()}
 
-/* ---------- 4 beyond text: a protein alignment ---------- */
+
 const QUERY='MKTLLAG?EVRDL?AQKFG?LSE';
 const ALN=[
  ['A','MKTLLAGIEVRDLLAQKFGELSE'],['A','MKTLLAGIEVRDLLAQKFGDLSE'],['A','MKSLLAGIEVRDLLAQKFGKLSE'],['A','MKTLLAGIEVKDLLAQKFGSLSE'],
@@ -407,7 +407,7 @@ function initBeyond(){let pos=null,set='all',revealed=false;
  $('#breveal').onclick=()=>{revealed=true;$('#btruth').innerHTML=`The fragment reads ${[...QUERY].map((c,i)=>c==='?'?`<b>${TRUTH[i]}</b>`:c).join('')}. Position 8: I, as most sequences said. Position 14: 11 of 12 sequences have L, but this fragment has I, so the most confident prediction was wrong. Position 20 was never certain, and the fragment has K, seen in only one sequence.`;show();done('beyond','At position 14 the prediction was 92% L and the fragment has I. Confidence measures how common a residue is in the training set, not whether it is right for your sample.')};
  show()}
 
-/* ---------- 6 agents: loop, permissions and checking ---------- */
+
 const TOOLS=[['read','Read a file'],['run','Run code'],['delete','Delete files']];
 const TRACE=[
  {who:'You',t:'What is the mean score in scores.csv?'},
@@ -444,7 +444,7 @@ function initAgents(){const P={read:'allow',run:'allow',delete:'allow'};let k=0,
   else $('#cexp').textContent=v===2?'That is what the agent reported. Add the two measured scores and divide by two.':'Add the two measured scores and divide by two.'});
  perm();render()}
 
-/* ---------- retrieval ---------- */
+
 const DOCS=[
  {t:'Course notice, 2026',x:'Submissions close Thursday at 17:00. Friday is for feedback.'},
  {t:'Course notice, 2025',x:'Submissions close Friday at 12:00. Late submissions are not accepted.'},
@@ -487,7 +487,7 @@ function initRetrieval(){const seen=new Set();
  const own=()=>{const q=$('#rin').value.trim();if(!q)return;document.querySelectorAll('#rq button').forEach(x=>x.setAttribute('aria-pressed','false'));show(q)};
  $('#rgo').onclick=own;$('#rin').onkeydown=e=>{if(e.key==='Enter')own()};show(RCASES[0][1])}
 
-/* ---------- evaluation ---------- */
+
 function wilson(k,n){if(!n)return [0,1];const z=1.96,p=k/n,d=1+z*z/n,c=(p+z*z/(2*n))/d,h=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n))/d;return [Math.max(0,c-h),Math.min(1,c+h)]}
 const TRUE_RATE=.72;
 V.evaluation=()=>page('evaluation','Evaluation','Before you rely on a tool for a task, test it like a measurement: decide in advance what counts as good enough, run it several times, and look at how uncertain the result is.',
@@ -522,15 +522,15 @@ function initEvaluation(){let bar=.8,runs=[];
 V.discussion=()=>`<h1>Before the discussion</h1>
 <h2 style="font-size:24px;margin:0 0 6px">When you use a chatbot</h2>
 <ol class="cl">
-<li><b>Tokens.</b> Danish text, sequences and long PDFs fill the window faster. In a long chat, early parts may be dropped or summarised.</li>
-<li><b>Prediction.</b> Fluent is not the same as true. Look up every reference, number and quote before you use it.</li>
-<li><b>Attention.</b> The wording and everything earlier in the chat change the answer. Ask the question neutrally, and start a new chat for a new task.</li>
-<li><b>Training.</b> It reflects what is common in its training data, not your field’s newest results or your lab’s methods.</li>
-<li><b>Sampling.</b> Ask more than once before you rely on an answer. One reply is one draw.</li>
-<li><b>Retrieval.</b> When it cites a source, open it. Check that it exists, says what the reply says, and is current.</li>
-<li><b>Agents.</b> Know what a tool can read, run and delete. Test its code on a small input where you know the answer.</li>
-<li><b>Evaluation.</b> Before using it for a task in your project, decide what good enough means and try it several times.</li>
-<li><b>KU rules.</b> Use Copilot Chat with your KU account. No personal data about test subjects, and nothing confidential or copyrighted, in any AI tool.</li>
+<li><b>Tokens.</b> Long documents and long chats use up the context window, and early parts can drop out.</li>
+<li><b>Prediction.</b> Check references, numbers and quotes against the source before you use them.</li>
+<li><b>Attention.</b> The way you phrase a question changes the answer. Start a new chat for a new task.</li>
+<li><b>Training.</b> It knows what was common in its training data, not recent results or your lab’s protocols.</li>
+<li><b>Sampling.</b> Ask more than once before you rely on an answer.</li>
+<li><b>Retrieval.</b> Open the sources it cites and check their date.</li>
+<li><b>Agents.</b> Know what the tool can read, run and delete. Test its code on an input with a known answer.</li>
+<li><b>Evaluation.</b> Try a task several times before you rely on the tool for it.</li>
+<li><b>KU rules.</b> Use Copilot Chat with your KU account. No personal or confidential data in any AI tool.</li>
 </ol>
 <h2 style="font-size:24px;margin:0 0 6px">Check your understanding</h2>
 <ol class="check" id="check">${CHECK.map((c,i)=>`<li><p>${i+1}. ${c.q}</p><div class="opts">${c.opts.map((o,j)=>`<button data-q="${i}" data-j="${j}" aria-pressed="false">${o}</button>`).join('')}</div><p class="ans" id="ans${i}"></p></li>`).join('')}</ol>
