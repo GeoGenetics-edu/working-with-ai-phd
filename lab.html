@@ -158,7 +158,7 @@ pre.code .bad{background:#F6E3E3}
  .ex div{grid-template-columns:1fr;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+.train{margin:0 0 22px}.train .task{margin-bottom:10px}.box.act[inert]~*{} .train .sents button{cursor:default}body:has(.box.act:not([inert])) .train .sents button{cursor:pointer}</style>
 <script src="tokenizer.js" defer></script>
 </head>
 <body>
@@ -195,14 +195,14 @@ function page(id,title,lede,body,take){
   const o=OPT.indexOf(id),k=ORDER.indexOf(id),prev=o>=0?(OPT[o-1]||'discussion'):ORDER[k-1],next=o>=0?OPT[o+1]:ORDER[k+1],P=PRED[id];
   const pred=P?`<div class="predict"><h2>Predict first</h2><p>${P.q}</p><div class="opts" id="popts">${P.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false">${o}</button>`).join('')}</div></div><p class="locked" id="locked">Pick an answer to unlock the exercise.</p>`:'';
   const steps=CORE.flatMap(p=>p[2].map(x=>x[0])),si=steps.indexOf(id);
-  return `${si>=0?`<p class="stepno">Step ${si+1} of ${steps.length}</p>`:o>=0?'<p class="stepno">Optional</p>':''}<h1>${title}</h1>${lede?`<p class="lede">${lede}</p>`:''}${pred}<div class="box act"${P?' inert':''}>${body}</div>
+  return `${si>=0?`<p class="stepno">Step ${si+1} of ${steps.length}</p>`:o>=0?'<p class="stepno">Optional</p>':''}<h1>${title}</h1>${lede?`<p class="lede">${lede}</p>`:''}${PRE[id]?PRE[id]():''}${pred}<div class="box act"${P?' inert':''}>${body}</div>
   <div class="take"><div class="fb" id="fb" aria-live="polite"></div>${take?`<p class="tk-text${P?'':' show'}" id="tk">${take}</p>`:''}<div class="nav">${prev?`<a class="btn ghost" href="#${prev}">Back</a>`:''}${next?`<a class="btn" href="#${next}">Next: ${NAME[next]}</a>`:''}</div></div>`;
 }
 let guess=null,finished=false;
 function initPredict(id){guess=null;finished=false;const P=PRED[id];if(!P)return;document.querySelectorAll('#popts button').forEach(b=>b.onclick=()=>{if(finished)return;guess=+b.dataset.i;document.querySelectorAll('#popts button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.querySelector('.act').removeAttribute('inert');const l=$('#locked');if(l)l.remove()})}
 function done(id,detail){if(finished||guess===null)return;finished=true;const P=PRED[id];const ok=guess===P.ans;const fb=$('#fb');fb.className='fb show'+(ok?'':' miss');fb.innerHTML=`<b>${ok?'Your prediction held.':'Not what you predicted.'}</b>You picked “${P.opts[guess]}”. ${detail}`;document.querySelectorAll('#popts button').forEach(b=>b.disabled=true);$('#tk')?.classList.add('show')}
 const PRED={
- beyond:{q:'Can the counting from the Prediction step predict a missing amino acid in a protein sequence?',opts:['No, it only works for words','Yes, if the tokens are amino acids'],ans:1},
+ beyond:{q:'A new protein fragment has one unknown residue. Counting the same position in five related sequences gives the most common residue. Will that be the residue in this fragment?',opts:['Yes, the most common one is right','Not necessarily'],ans:1},
  permissions:{q:'An agent’s model asks to delete a data folder. What decides whether that happens?',opts:['The model’s own judgement','The rules in the program around it','Nothing can stop it'],ans:1},
  code:{q:'The agent’s script runs without errors and prints a number. Is the number right?',opts:['Yes, it ran without errors','Not necessarily'],ans:1},
  attention:{q:'“Drafts for comments: submit on …” and “Final reports: submit on …” end with the same two words. Will the model predict the same day for both?',opts:['Yes, only the last words count','No, earlier words can change it'],ans:1},
@@ -250,12 +250,12 @@ function initTokens(){
  document.querySelectorAll('#popts button').forEach(b=>b.addEventListener('click',()=>{const n=splitTokens('When do submissions close?').length;done('tokens',`${n} tokens: the question mark is its own token. Now try a species name.`)}));
 }
 /* 2 prediction */
+const PRE={prediction:()=>`<div class="train"><p class="task">The training text: five course notices.</p><ol class="sents" id="sents">${SENTS.map((s,i)=>`<li><button data-i="${i}">${s[0]}<em>${s[1]}</em>${s[2]}</button></li>`).join('')}</ol></div>`};
 V.prediction=()=>page('prediction','Prediction','A model gives each possible next token a probability. The simplest way is to count what came next in the training text.',
- `<p class="task">The training text. Click each sentence to count the word after “submit on”.</p>
- <ol class="sents" id="sents">${SENTS.map((s,i)=>`<li><button data-i="${i}">${s[0]}<em>${s[1]}</em>${s[2]}</button></li>`).join('')}</ol>
+ `<p class="task">Click each sentence above to count the word after “submit on”.</p>
  <div id="pbars">${bars(0,0)}</div><p class="count" id="pcount">0 of 5 sentences counted.</p>`,
  'Friday 60%, Thursday 40%. That describes the training text, not your course.');
-function initPrediction(){const done=new Set();document.querySelectorAll('#sents button').forEach(b=>b.onclick=()=>{done.add(+b.dataset.i);b.classList.add('done');const f=[...done].filter(i=>SENTS[i][1]==='Friday').length,t=done.size-f;$('#pbars').innerHTML=bars(f/5,t/5);$('#pcount').textContent=`${done.size} of 5 sentences counted: Friday ${f}, Thursday ${t}.`;if(done.size===5)window.done('prediction','Friday 3, Thursday 2: the counts favour Friday.')})}
+function initPrediction(){const done=new Set();document.querySelectorAll('#sents button').forEach(b=>b.onclick=()=>{if(document.querySelector('.box.act[inert]'))return;done.add(+b.dataset.i);b.classList.add('done');const f=[...done].filter(i=>SENTS[i][1]==='Friday').length,t=done.size-f;$('#pbars').innerHTML=bars(f/5,t/5);$('#pcount').textContent=`${done.size} of 5 sentences counted: Friday ${f}, Thursday ${t}.`;if(done.size===5)window.done('prediction','Friday 3, Thursday 2: the counts favour Friday.')})}
 
 
 /* attention */
@@ -354,13 +354,13 @@ function initAgents(){let k=0;const show=()=>{$('#awin').innerHTML=LOOP.slice(0,
 const ALN=['MKTLLVAG','MKSLLVAG','MRTLLIAG','MKTLIVAG','MKTLLVSG'],COL=4;
 const bars2=items=>`<div class="bars">${items.map(([l,v],i)=>`<div class="bar${i?' th':''}"><span>${l}</span><span class="tr"><span class="fill" style="width:${v*100}%"></span></span><b>${Math.round(v*100)}%</b></div>`).join('')}</div>`;
 V.beyond=()=>page('beyond','Beyond text','Tokens do not have to be words. The same kind of model is trained on protein sequences, DNA, images and nanopore signal.',
- `<p class="task">A new protein fragment has one unknown residue. Click each known sequence to count the residue at that position.</p>
+ `<p class="task">Click each related sequence to count the residue at the unknown position.</p>
  <p class="aln">MKTL<span class="q">?</span>VAG</p>
  <ol class="sents" id="bseqs">${ALN.map((q,i)=>`<li><button data-i="${i}" class="aln">${q.slice(0,COL)}<span class="col">${q[COL]}</span>${q.slice(COL+1)}</button></li>`).join('')}</ol>
  <div id="bbars">${bars2([['L (leucine)',0],['I (isoleucine)',0]])}</div><p class="count" id="bcount">0 of 5 sequences counted.</p>
  <p class="simple">Simplified: counting one column of five invented sequences. Protein models such as ESM-2 use attention over the whole sequence. Other models change the output: AlphaFold2 predicts a 3D structure, a basecaller predicts bases from signal.</p>`,
- 'The counting is the same; the tokens are amino acids. The prediction reflects the sequences the model was trained on.');
-function initBeyond(){const seen=new Set();document.querySelectorAll('#bseqs button').forEach(b=>b.onclick=()=>{seen.add(+b.dataset.i);b.classList.add('done');const l=[...seen].filter(i=>ALN[i][COL]==='L').length,n=seen.size;$('#bbars').innerHTML=bars2([['L (leucine)',l/5],['I (isoleucine)',(n-l)/5]]);$('#bcount').textContent=`${n} of 5 sequences counted: L ${l}, I ${n-l}.`;if(n===5)done('beyond','Leucine in 4 of 5 sequences, isoleucine in 1.')})}
+ 'The counting is the same; the tokens are amino acids. The prediction tells you what is common in the training sequences, not what is in your sample.');
+function initBeyond(){const seen=new Set();document.querySelectorAll('#bseqs button').forEach(b=>b.onclick=()=>{seen.add(+b.dataset.i);b.classList.add('done');const l=[...seen].filter(i=>ALN[i][COL]==='L').length,n=seen.size;$('#bbars').innerHTML=bars2([['L (leucine)',l/5],['I (isoleucine)',(n-l)/5]]);$('#bcount').textContent=`${n} of 5 sequences counted: L ${l}, I ${n-l}.`;if(n===5)done('beyond','The counts say leucine, 4 of 5. This fragment was sequenced and has isoleucine: the common answer was wrong here, like Friday.')})}
 
 /* permissions */
 const REQS=[['read','Read assistant_trials.csv','task,correct_replies,trials'],['run','Run count_correct.py','Find the deadline: 3 of 4. Quote the rule: 1 of 4.'],['del','Delete the folder raw_data/','Folder deleted.']];
