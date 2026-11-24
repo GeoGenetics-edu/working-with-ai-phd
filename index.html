@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Working with AI during a PhD</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#f8fafc;color:#1e293b;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:60px 24px}
+h1{font-size:2.2em;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;text-align:center}
+.org{font-size:.95em;color:#64748b;margin-bottom:48px;text-align:center}
+.lectures{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;width:100%;max-width:900px}
+.card{background:#fff;border-radius:12px;padding:28px 24px;border:1px solid #e2e8f0;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-tag{display:inline-block;font-size:.7em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.card h2{font-size:1.15em;font-weight:700;margin-bottom:6px}
+.card p{font-size:.85em;color:#64748b;line-height:1.5}
+.tag-talk{background:#eef2ff;color:#2b44c2}
+.tag-pdf{background:#fef2f2;color:#a3262a}
+footer{margin-top:60px;font-size:.8em;color:#94a3b8}
+footer a{color:#64748b}
+</style>
+</head>
+<body>
+<h1>Working with AI during a PhD</h1>
+<p class="org">Globe PhD Retreat, 24 November 2026<br>Globe Institute, University of Copenhagen</p>
+<div class="lectures">
+  <a class="card" href="slides.html">
+    <span class="card-tag tag-talk">Slides</span>
+    <h2>Working with AI during a PhD</h2>
+    <p>Where AI comes from, how a language model produces text, what to be aware of, and KU’s rules. Use the arrow keys to move through the slides.</p>
+  </a>
+  <a class="card" href="slides.pdf" download>
+    <span class="card-tag tag-pdf">PDF</span>
+    <h2>Download the slides</h2>
+    <p>All 34 slides as one PDF, with every step shown.</p>
+  </a>
+</div>
+<footer>
+  <a href="https://github.com/GeoGenetics-edu/working-with-ai-phd">Source on GitHub</a>
+</footer>
+</body>
+</html>
