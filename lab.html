@@ -175,7 +175,7 @@ pre.code .bad{background:#F6E3E3}
 </div>
 <script>
 const PARTS=[
- ['01','Inside the model',[['tokens','Tokens'],['prediction','Prediction'],['attention','Attention'],['training','Training'],['sampling','Sampling'],['beyond','Beyond text']]],
+ ['01','Inside the model',[['tokens','Tokens'],['prediction','Prediction'],['attention','Attention'],['training','Training'],['sampling','Sampling']]],
  ['02','Around the model',[['retrieval','Retrieval'],['agents','Agents']]],
  ['03','Checking the output',[['evaluation','Evaluation']]],
 ];
@@ -384,7 +384,7 @@ const ALN=[
 const MASK=[...QUERY].map((c,i)=>c==='?'?i:-1).filter(i=>i>=0);
 const TRUTH={7:'I',13:'I',19:'K'};
 const AANAME={A:'alanine',D:'aspartate',E:'glutamate',G:'glycine',I:'isoleucine',K:'lysine',L:'leucine',M:'methionine',N:'asparagine',Q:'glutamine',R:'arginine',S:'serine',V:'valine'};
-V.beyond=()=>page('beyond','Beyond text','Tokens do not have to be words. The same kind of model is trained on protein sequences, DNA, images and nanopore signal. Here the tokens are amino acids, and the “training text” is a set of related sequences.',
+V._beyond=()=>page('beyond','Beyond text','Tokens do not have to be words. The same kind of model is trained on protein sequences, DNA, images and nanopore signal. Here the tokens are amino acids, and the “training text” is a set of related sequences.',
  `<p class="task">A new fragment from a sample of your own, with three unknown residues. Click a <span class="q">?</span> to see what the training sequences say at that position.</p>
  <p class="aln" id="bq">${[...QUERY].map((c,i)=>c==='?'?`<button class="qpos" data-i="${i}" aria-pressed="false">?</button>`:c).join('')}</p>
  <div class="seg" id="bset"><button data-s="all" aria-pressed="true">Train on all 12 sequences</button><button data-s="A" aria-pressed="false">Only the 8 from group A</button><button data-s="B" aria-pressed="false">Only the 4 from group B</button></div>
