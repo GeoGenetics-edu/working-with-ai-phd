@@ -203,7 +203,7 @@ function initPredict(id){guess=null;finished=false;pendingDetail=null;curId=id;c
 function done(id,detail){if(finished||id!==curId)return;const P=PRED[id];if(!P)return;if(guess===null){pendingDetail=detail;return}finished=true;const ok=guess===P.ans;const fb=$('#fb');fb.className='fb show'+(ok?'':' miss');fb.innerHTML=`<b>${ok?'As you expected.':'Not what you expected.'}</b>You picked “${P.opts[guess]}”. ${detail}`;document.querySelectorAll('#popts button').forEach(b=>b.disabled=true)}
 const PRED={
  tokens:{q:'The same sentence in English and in Danish: which one becomes more tokens?',opts:['English','Danish','About the same'],ans:1},
- prediction:{q:'If you count only the last two words, “submit on”, which day comes next most often in the training text?',opts:['Friday','Thursday','They are tied'],ans:0},
+ prediction:{q:'Look at the training text below the line. Counting only the last two words, “submit on”, which day comes next most often?',opts:['Friday','Thursday','They are tied'],ans:0},
  sampling:{q:'You turn the temperature down to 0 so the model always picks its most likely word. How often is the reply now correct (Thursday)?',opts:['Always','About as often as before','Never'],ans:2},
  attention:{q:'“Drafts for comments: submit on …” and “Final reports: submit on …” end with the same two words. Will the model predict the same day for both?',opts:['Yes, only the last words count','No, earlier words can change it'],ans:1},
  training:{q:'The training data has 3 sentences with Friday and 2 with Thursday. After many rounds of training, where does the model end up?',opts:['Friday 100%','Friday about 60%','Stays at 50/50'],ans:1},
