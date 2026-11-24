@@ -217,7 +217,7 @@ const bars=(f,t)=>`<div class="bars">${bar('Friday',f)}${bar('Thursday',t,'th')}
 
 const V={};
 V.home=()=>`<h1>Language Model Lab</h1>
-<p class="lede">A course assistant gives a student the wrong submission deadline. In ${CORE.flatMap(p=>p[2]).length} steps you look at where that answer comes from and how you would check it. Work in pairs; it takes about 35 minutes.</p>
+<p class="lede">A course assistant gives a student the wrong submission deadline. In ${CORE.flatMap(p=>p[2]).length} steps you look at where that answer comes from and how you would check it.</p>
 <div class="ex"><div><b>Student</b><span>When do submissions close?</span></div><div><b>Assistant</b><span class="wrong">You can submit on Friday.</span></div><div><b>Course notice</b><span>${NOTICE}</span></div></div>
 <ol class="plist">${CORE.map(([n,q,items])=>`<li><span class="num">${n}</span><div><strong>${q}</strong><span>${items.map(i=>i[1]).join(', ')}</span></div></li>`).join('')}</ol>
 <p class="note" style="margin:-20px 0 28px">You don’t need to finish every “Try this” list.</p>
