@@ -69,7 +69,7 @@ input[type=text]{font:20px var(--sans);width:100%;max-width:560px;padding:10px 1
 .sents button.done{background:var(--pale);border-color:var(--ult)}
 .sents em{font-style:normal;color:var(--ult)}
 .bars{margin-top:22px;display:grid;gap:10px;max-width:560px}
-.bar{display:grid;grid-template-columns:110px 1fr 64px;gap:12px;align-items:center;font-size:16px}
+.bar{display:grid;grid-template-columns:150px 1fr 90px;gap:12px;align-items:center;font-size:16px}
 .bar .tr{display:block;height:16px;background:var(--rule)}
 .bar .fill{display:block;height:100%;background:var(--ult);width:0;transition:width .35s}
 .bar.th .fill{background:var(--sage)}
@@ -158,7 +158,7 @@ pre.code .bad{background:#F6E3E3}
  .ex div{grid-template-columns:1fr;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-.train{margin:0 0 22px}.train .task{margin-bottom:10px}.box.act[inert]~*{} .train .sents button{cursor:default}body:has(.box.act:not([inert])) .train .sents button{cursor:pointer}</style>
+.train{margin:0 0 22px}.train .task{margin-bottom:10px}.box.act[inert]~*{} .train .sents button{cursor:default}body:has(.box.act:not([inert])) .train .sents button{cursor:pointer}textarea{width:100%;font:15px/1.55 var(--mono);padding:10px 12px;border:1px solid #B4BDC2;border-radius:4px;background:#fff;color:var(--ink);resize:vertical}.row{display:flex;flex-wrap:wrap;gap:22px;align-items:end;margin:16px 0 4px}.row label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--mut)}.row input[type=text]{max-width:420px}select{font:16px var(--sans);padding:9px 10px;border:1px solid #B4BDC2;border-radius:4px;background:#fff;color:var(--ink)}.seg.wrap{flex-wrap:wrap}.tasks{margin:30px 0 0;padding:16px 0 0 22px;border-top:1px solid var(--rule);font-size:16px;line-height:1.5}.tasks li{margin:0 0 8px}.tasks::before{content:"Try this";display:block;margin:0 0 8px -22px;font-size:13px;font-weight:600;color:var(--mut)}.gens{margin-top:12px}.gen{font:18px/1.45 var(--serif);padding:8px 12px;border-left:2px solid var(--ult);background:#fff;margin:0 0 6px}.gen small{display:block;font:12px var(--sans);color:var(--mut);margin-top:2px}.alnbox{font:17px/1.55 var(--mono);letter-spacing:.14em;background:#fff;border:1px solid var(--rule);border-radius:4px;padding:10px 14px;margin:8px 0 4px;overflow:auto}.alnrow{display:flex;gap:14px}.alnrow small{color:var(--mut);letter-spacing:0;font:12px var(--sans);width:14px;padding-top:4px}.alnrow b{color:#fff;background:var(--ult);font-weight:600}.alnrow u{text-decoration:none;color:var(--ult)}.qpos{font:inherit;letter-spacing:0;border:1.5px dashed var(--sage);background:#fff;color:var(--ink);padding:0 4px;margin:0 2px;border-radius:2px}.qpos[aria-pressed=true]{border-style:solid;border-color:var(--ult);background:var(--pale);color:var(--ult)}.askbox{border:1px solid var(--ult);border-radius:4px;background:#fff;padding:12px 14px;margin:0 0 14px}.askbox p{margin:0 0 10px}.wline.badl{background:#F6E3E3}.wline pre.code{margin:6px 0 0;font-size:13px}.hl.bad{background:#F6E3E3}.ci{margin-top:18px;max-width:640px}.cirow{display:grid;grid-template-columns:190px 1fr;gap:12px;align-items:center;margin:0 0 10px;font-size:15px}.citr{position:relative;height:18px;background:var(--rule)}.cibar{position:absolute;top:4px;height:10px;background:#B9C3EE}.cidot{position:absolute;top:2px;width:3px;height:14px;background:var(--ult);margin-left:-1px}.cibarline{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--red)}.ciax{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}.arows{display:grid;gap:10px;margin:8px 0 0}.arow{display:grid;grid-template-columns:170px 1fr 120px;gap:16px;align-items:center}.arow .tk{align-items:flex-start}.arow .tk i{font-size:19px}.aw{font-size:13px;color:var(--mut);line-height:1.35}.aw b{color:var(--ink)}.mix{display:flex;gap:8px;align-items:center;font-size:16px;color:var(--ink)}.mix .btn{padding:4px 10px;font-size:14px}.row input[type=range]{width:220px}.tplot{width:100%;max-width:600px;height:160px;background:#fff;border:1px solid var(--rule);margin-top:16px}</style>
 <script src="tokenizer.js" defer></script>
 </head>
 <body>
@@ -175,251 +175,358 @@ pre.code .bad{background:#F6E3E3}
 </div>
 <script>
 const PARTS=[
- ['01','Inside the model',[['tokens','Tokens'],['prediction','Prediction'],['attention','Attention'],['sampling','Sampling'],['training','Training'],['beyond','Beyond text']]],
- ['02','Around the model',[['retrieval','Retrieval'],['agents','Agents'],['permissions','Permissions'],['code','Checking the code']]],
+ ['01','Inside the model',[['tokens','Tokens'],['prediction','Prediction'],['attention','Attention'],['training','Training'],['sampling','Sampling'],['beyond','Beyond text']]],
+ ['02','Around the model',[['retrieval','Retrieval'],['agents','Agents']]],
  ['03','Checking the output',[['evaluation','Evaluation']]],
 ];
-const OPT=['training','permissions','code'];
+const OPT=[];
 const CORE=PARTS.map(([n,q,items])=>[n,q,items.filter(i=>!OPT.includes(i[0]))]);
 const ORDER=['home',...CORE.flatMap(p=>p[2].map(s=>s[0])),'discussion'];
 const NAME=Object.fromEntries([['home','Overview'],...PARTS.flatMap(p=>p[2]),['discussion','Before the discussion']]);
 const $=s=>document.querySelector(s);
-const SENTS=[['You can submit on ','Friday',' before noon.'],['Late work: submit on ','Friday',' with a note to the teacher.'],['Drafts: submit on ','Thursday',' for comments.'],['Final reports: submit on ','Friday',' at 12:00.'],['Submit on ','Thursday',' if you want feedback.']];
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const NOTICE='Submissions close Thursday at 17:00. Friday is for feedback.';
 
 function nav(cur){
   const item=(id,label,cls='')=>`<a class="step ${cls}${id===cur?' on':''}" href="#${id}"${id===cur?' aria-current="page"':''}>${label}</a>`;
-  $('#nav').innerHTML=item('home','Overview','top')+CORE.map(([n,q,items])=>`<div class="part${items.some(i=>i[0]===cur)?' here':''}"><span class="num">${n}</span><span class="pq">${q}</span>${items.map(i=>item(i[0],i[1])).join('')}</div>`).join('')+item('discussion','Before the discussion','top')+`<div class="part opt${OPT.includes(cur)?' here':''}"><span class="pq">If you have time</span>${OPT.map(id=>item(id,NAME[id])).join('')}</div>`;
+  $('#nav').innerHTML=item('home','Overview','top')+CORE.map(([n,q,items])=>`<div class="part${items.some(i=>i[0]===cur)?' here':''}"><span class="num">${n}</span><span class="pq">${q}</span>${items.map(i=>item(i[0],i[1])).join('')}</div>`).join('')+item('discussion','Before the discussion','top')+(OPT.length?`<div class="part opt${OPT.includes(cur)?' here':''}"><span class="pq">If you have time</span>${OPT.map(id=>item(id,NAME[id])).join('')}</div>`:'');
 }
 function page(id,title,lede,body,take){
   const o=OPT.indexOf(id),k=ORDER.indexOf(id),prev=o>=0?(OPT[o-1]||'discussion'):ORDER[k-1],next=o>=0?OPT[o+1]:ORDER[k+1],P=PRED[id];
-  const pred=P?`<div class="predict"><h2>Predict first</h2><p>${P.q}</p><div class="opts" id="popts">${P.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false">${o}</button>`).join('')}</div></div><p class="locked" id="locked">Pick an answer to unlock the exercise.</p>`:'';
+  const pred=P?`<div class="predict"><h2>Before you try</h2><p>${P.q}</p><div class="opts" id="popts">${P.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false">${o}</button>`).join('')}</div></div>`:'';
   const steps=CORE.flatMap(p=>p[2].map(x=>x[0])),si=steps.indexOf(id);
-  return `${si>=0?`<p class="stepno">Step ${si+1} of ${steps.length}</p>`:o>=0?'<p class="stepno">Optional</p>':''}<h1>${title}</h1>${lede?`<p class="lede">${lede}</p>`:''}${PRE[id]?PRE[id]():''}${pred}<div class="box act"${P?' inert':''}>${body}</div>
-  <div class="take"><div class="fb" id="fb" aria-live="polite"></div>${take?`<p class="tk-text${P?'':' show'}" id="tk">${take}</p>`:''}<div class="nav">${prev?`<a class="btn ghost" href="#${prev}">Back</a>`:''}${next?`<a class="btn" href="#${next}">Next: ${NAME[next]}</a>`:''}</div></div>`;
+  return `${si>=0?`<p class="stepno">Step ${si+1} of ${steps.length}</p>`:o>=0?'<p class="stepno">Optional</p>':''}<h1>${title}</h1>${lede?`<p class="lede">${lede}</p>`:''}${pred}<div class="box act">${body}</div>
+  <div class="take"><div class="fb" id="fb" aria-live="polite"></div>${take?`<p class="tk-text show" id="tk">${take}</p>`:''}<div class="nav">${prev?`<a class="btn ghost" href="#${prev}">Back</a>`:''}${next?`<a class="btn" href="#${next}">Next: ${NAME[next]}</a>`:''}</div></div>`;
 }
-let guess=null,finished=false;
-function initPredict(id){guess=null;finished=false;const P=PRED[id];if(!P)return;document.querySelectorAll('#popts button').forEach(b=>b.onclick=()=>{if(finished)return;guess=+b.dataset.i;document.querySelectorAll('#popts button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.querySelector('.act').removeAttribute('inert');const l=$('#locked');if(l)l.remove()})}
-function done(id,detail){if(finished||guess===null)return;finished=true;const P=PRED[id];const ok=guess===P.ans;const fb=$('#fb');fb.className='fb show'+(ok?'':' miss');fb.innerHTML=`<b>${ok?'Your prediction held.':'Not what you predicted.'}</b>You picked “${P.opts[guess]}”. ${detail}`;document.querySelectorAll('#popts button').forEach(b=>b.disabled=true);$('#tk')?.classList.add('show')}
+let guess=null,finished=false,pendingDetail=null,curId=null;
+function initPredict(id){guess=null;finished=false;pendingDetail=null;curId=id;const P=PRED[id];if(!P)return;document.querySelectorAll('#popts button').forEach(b=>b.onclick=()=>{if(finished)return;guess=+b.dataset.i;document.querySelectorAll('#popts button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(pendingDetail)done(id,pendingDetail)})}
+function done(id,detail){if(finished||id!==curId)return;const P=PRED[id];if(!P)return;if(guess===null){pendingDetail=detail;return}finished=true;const ok=guess===P.ans;const fb=$('#fb');fb.className='fb show'+(ok?'':' miss');fb.innerHTML=`<b>${ok?'As you expected.':'Not what you expected.'}</b>You picked “${P.opts[guess]}”. ${detail}`;document.querySelectorAll('#popts button').forEach(b=>b.disabled=true)}
 const PRED={
- beyond:{q:'A new protein fragment has one unknown residue. Counting the same position in five related sequences gives the most common residue. Will that be the residue in this fragment?',opts:['Yes, the most common one is right','Not necessarily'],ans:1},
- permissions:{q:'An agent’s model asks to delete a data folder. What decides whether that happens?',opts:['The model’s own judgement','The rules in the program around it','Nothing can stop it'],ans:1},
- code:{q:'The agent’s script runs without errors and prints a number. Is the number right?',opts:['Yes, it ran without errors','Not necessarily'],ans:1},
+ tokens:{q:'The same sentence in English and in Danish: which one becomes more tokens?',opts:['English','Danish','About the same'],ans:1},
+ prediction:{q:'If you count only the last two words, “submit on”, which day comes next most often in the training text?',opts:['Friday','Thursday','They are tied'],ans:0},
+ sampling:{q:'You turn the temperature down to 0 so the model always picks its most likely word. How often is the reply now correct (Thursday)?',opts:['Always','About as often as before','Never'],ans:2},
  attention:{q:'“Drafts for comments: submit on …” and “Final reports: submit on …” end with the same two words. Will the model predict the same day for both?',opts:['Yes, only the last words count','No, earlier words can change it'],ans:1},
- tokens:{q:'“When do submissions close?” has four words. How many tokens will it become?',opts:['Fewer than four','Exactly four, one per word','More than four'],ans:2},
- prediction:{q:'In the five training sentences, which word will follow “submit on” most often?',opts:['Friday','Thursday','Both equally'],ans:0},
- sampling:{q:'If you ask the same question 10 times, how many times will it say Friday?',opts:['10 of 10, the most likely answer','About 6, but it varies','Exactly 6'],ans:1},
- training:{q:'After many rounds of training on the five sentences, where will the model end up?',opts:['Friday 100%','Friday about 60%','Stays at 50/50'],ans:1},
- retrieval:{q:'The search looks for documents that share words with your question. Will it always put the course notice in the window?',opts:['Yes, the notice is the obvious match','No, it can pick the wrong document or nothing'],ans:1},
- agents:{q:'When an agent “reads a file”, who actually opens it?',opts:['The model','The program around the model','Nobody, the model already knows'],ans:1},
- evaluation:{q:'Deadline right in 3 of 4 tries, rule right in 1 of 4. Does the assistant work?',opts:['Yes','No','It depends on the bar you set'],ans:2},
+ training:{q:'The training data has 3 sentences with Friday and 2 with Thursday. After many rounds of training, where does the model end up?',opts:['Friday 100%','Friday about 60%','Stays at 50/50'],ans:1},
+ beyond:{q:'At a position where 11 of 12 related sequences share the same residue, will the prediction be right for a new fragment?',opts:['Yes, 92% is near certain','Not necessarily'],ans:1},
+ retrieval:{q:'The document set includes last year’s notice with a different deadline. Will the search always prefer this year’s?',opts:['Yes, it is the better match','No, it ranks words, not dates'],ans:1},
+ agents:{q:'The agent’s script runs without errors and reports a mean. Is the mean right?',opts:['Yes, it ran without errors','Not necessarily'],ans:1},
+ evaluation:{q:'The assistant got the deadline right in 7 of 10 tries. What does that tell you about its real success rate?',opts:['It is 70%','Somewhere between about 40% and 90%','Nothing at all'],ans:1},
 };
-
-const bars=(f,t)=>`<div class="bars"><div class="bar"><span>Friday</span><span class="tr"><span class="fill" style="width:${f*100}%"></span></span><b>${Math.round(f*100)}%</b></div><div class="bar th"><span>Thursday</span><span class="tr"><span class="fill" style="width:${t*100}%"></span></span><b>${Math.round(t*100)}%</b></div></div>`;
+const bar=(label,v,cls='',txt=null)=>`<div class="bar${cls?' '+cls:''}"><span>${label}</span><span class="tr"><span class="fill" style="width:${Math.max(0,Math.min(1,v))*100}%"></span></span><b>${txt??Math.round(v*100)+'%'}</b></div>`;
+const bars=(f,t)=>`<div class="bars">${bar('Friday',f)}${bar('Thursday',t,'th')}</div>`;
 
 const V={};
 V.home=()=>`<h1>Language Model Lab</h1>
-<p class="lede">This lab shows how a language model produces a reply and what is built around it, using one example: a course assistant that gives the wrong submission deadline. There are ${CORE.flatMap(p=>p[2]).length} steps.</p>
+<p class="lede">How a language model produces a reply, and what is built around it. One running example: a course assistant that gives the wrong submission deadline. ${CORE.flatMap(p=>p[2]).length} steps, about 40 minutes in pairs.</p>
 <div class="ex"><div><b>Student</b><span>When do submissions close?</span></div><div><b>Assistant</b><span class="wrong">You can submit on Friday.</span></div><div><b>Course notice</b><span>${NOTICE}</span></div></div>
 <ol class="plist">${CORE.map(([n,q,items])=>`<li><span class="num">${n}</span><div><strong>${q}</strong><span>${items.map(i=>i[1]).join(', ')}</span></div></li>`).join('')}</ol>
-<p class="note" style="margin:-20px 0 28px">If you have time afterwards: ${OPT.map(id=>NAME[id]).join(', ')}.</p>
+<p class="note" style="margin:-20px 0 28px">Work in pairs on one laptop. Every step has a “Try this” list; you don’t need to finish them all.</p>
 <div class="nav"><a class="btn" href="#tokens">Next: Tokens</a></div>`;
 
-/* 1 tokens */
+/* ---------- 1 tokens ---------- */
+const TPRE=[
+ ['English','The samples were sequenced twice to check for contamination.'],
+ ['Danish','Prøverne blev sekventeret to gange for at tjekke for kontaminering.'],
+ ['Species','Mammuthus primigenius'],
+ ['DNA','ATGGCGTACGTTAGCCTAGGCTAA'],
+ ['Number','3.14159265358979'],
+ ['Spelling','How many r’s are in strawberry?'],
+];
 const VOCAB=['when','do','does','close','the','a','to','is','on','at','of','in','and','what','submit','for','friday','thursday','course','?','.',','];
-function tokenize(text){
-  const out=[];(text.match(/[A-Za-zÀ-ÿ]+|\d+|[^\sA-Za-zÀ-ÿ\d]/g)||[]).forEach((w,i)=>{
-    const lead=/[A-Za-zÀ-ÿ\d]/.test(w)&&i>0?'␣':'';
-    if(VOCAB.includes(w.toLowerCase())||w.length<=4){out.push(lead+w);return}
-    let rest=w,first=true;while(rest.length){const n=rest.length>8?4:rest.length>5?3:rest.length;out.push((first?lead:'')+rest.slice(0,n));rest=rest.slice(n);first=false}
-  });return out;
-}
+function tokenize(text){const out=[];(text.match(/[A-Za-zÀ-ÿ]+|\d+|[^\sA-Za-zÀ-ÿ\d]/g)||[]).forEach((w,i)=>{const lead=/[A-Za-zÀ-ÿ\d]/.test(w)&&i>0?'␣':'';if(VOCAB.includes(w.toLowerCase())||w.length<=4){out.push(lead+w);return}let rest=w,first=true;while(rest.length){const n=rest.length>8?4:rest.length>5?3:rest.length;out.push((first?lead:'')+rest.slice(0,n));rest=rest.slice(n);first=false}});return out}
 const tid=t=>{let h=7;for(const c of t)h=(h*31+c.charCodeAt(0))%50000;return h+100};
-V.tokens=()=>page('tokens','Tokens','A model does not read words. Text is cut into tokens, and each token becomes a number.',
- `<p class="task">Try a species, a gene or your own name.</p>
- <input type="text" id="tin" value="When do submissions close?" aria-label="Text to split into tokens">
- <div class="toks" id="tout"></div><p class="count" id="tcount"></p><p class="note" id="tsrc"></p>`,
- 'Common words are one token; rare words split into pieces. The model sees numbers, not letters.');
 function splitTokens(text){if(window.realTokenize)return window.realTokenize(text).map(([t,id])=>[t.replace(/ /g,'␣'),id]);return tokenize(text).map(t=>[t,tid(t)])}
-function initTokens(){
+V.tokens=()=>page('tokens','Tokens','A model does not read letters or words. Text is cut into tokens from a fixed vocabulary, and each token becomes a number. Tokens are also what you pay for and what fills the context window.',
+ `<p class="task">Type anything, or load an example. Each text you try is added to the table.</p>
+ <div class="seg wrap" id="tpre">${TPRE.map(([l],i)=>`<button data-i="${i}" aria-pressed="false">${l}</button>`).join('')}</div>
+ <input type="text" id="tin" value="When do submissions close?" aria-label="Text to split into tokens">
+ <div class="toks" id="tout"></div><p class="count" id="tcount"></p><p class="note" id="tsrc"></p>
+ <h3 class="sub">Texts you have tried</h3>
+ <table><thead><tr><th>Text</th><th>Characters</th><th>Tokens</th><th>Characters per token</th></tr></thead><tbody id="tlog"></tbody></table>
+ <ol class="tasks"><li>Compare the English and the Danish sentence. Which one would cost more, and fill the window faster?</li><li>Find a term from your own field that splits into four or more pieces.</li><li>Load “Spelling”. Can the model see the letters in “strawberry”?</li></ol>`,
+ 'Common English words are one token each. Danish, species names, DNA and numbers split into many pieces, so the same content costs more and fits less. The model sees token numbers, never letters, which is why counting letters is hard for it.');
+function initTokens(){const log=new Map();let tm=null;
  const run=()=>{const text=$('#tin').value;const t=splitTokens(text);const words=(text.match(/\S+/g)||[]).length;
-  $('#tout').innerHTML=t.map(([x,id])=>`<span class="tk"><i>${x.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</i><small>${id}</small></span>`).join('');
-  $('#tcount').textContent=`${words} ${words===1?'word':'words'} became ${t.length} ${t.length===1?'token':'tokens'}.`;
-  $('#tsrc').textContent=window.realTokenize?'GPT-4 tokenizer (cl100k_base). ␣ is a space; the number is the token ID.':'Illustrative tokenizer while the real one loads.'};
- $('#tin').oninput=run;run();addEventListener('tokenizer-ready',run,{once:true});
- document.querySelectorAll('#popts button').forEach(b=>b.addEventListener('click',()=>{const n=splitTokens('When do submissions close?').length;done('tokens',`${n} tokens: the question mark is its own token. Now try a species name.`)}));
-}
-/* 2 prediction */
-const PRE={prediction:()=>`<div class="train"><p class="task">The training text: five course notices.</p><ol class="sents" id="sents">${SENTS.map((s,i)=>`<li><button data-i="${i}">${s[0]}<em>${s[1]}</em>${s[2]}</button></li>`).join('')}</ol></div>`};
-V.prediction=()=>page('prediction','Prediction','A model gives each possible next token a probability. The simplest way is to count what came next in the training text.',
- `<p class="task">Click each sentence above to count the word after “submit on”.</p>
- <div id="pbars">${bars(0,0)}</div><p class="count" id="pcount">0 of 5 sentences counted.</p>`,
- 'Friday 60%, Thursday 40%. That describes the training text, not your course.');
-function initPrediction(){const done=new Set();document.querySelectorAll('#sents button').forEach(b=>b.onclick=()=>{if(document.querySelector('.box.act[inert]'))return;done.add(+b.dataset.i);b.classList.add('done');const f=[...done].filter(i=>SENTS[i][1]==='Friday').length,t=done.size-f;$('#pbars').innerHTML=bars(f/5,t/5);$('#pcount').textContent=`${done.size} of 5 sentences counted: Friday ${f}, Thursday ${t}.`;if(done.size===5)window.done('prediction','Friday 3, Thursday 2: the counts favour Friday.')})}
+  $('#tout').innerHTML=t.map(([x,id])=>`<span class="tk"><i>${esc(x)}</i><small>${id}</small></span>`).join('');
+  $('#tcount').textContent=`${text.length} characters, ${words} ${words===1?'word':'words'}, ${t.length} ${t.length===1?'token':'tokens'}.`;
+  $('#tsrc').textContent=window.realTokenize?'GPT-4 tokenizer (cl100k_base). ␣ is a space; the number under each piece is its token ID.':'Illustrative tokenizer while the real one loads.';
+  clearTimeout(tm);tm=setTimeout(()=>{if(!text.trim())return;log.set(text,[text.length,t.length]);$('#tlog').innerHTML=[...log].slice(-8).map(([s,[c,n]])=>`<tr><td class="dx">${esc(s.length>48?s.slice(0,46)+'…':s)}</td><td>${c}</td><td>${n}</td><td>${(c/n).toFixed(1)}</td></tr>`).join('');
+   const en=log.get(TPRE[0][1]),da=log.get(TPRE[1][1]);if(en&&da)done('tokens',`English ${en[1]} tokens, Danish ${da[1]}: the Danish sentence needs ${da[1]-en[1]} more for the same meaning.`)},500)};
+ document.querySelectorAll('#tpre button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tpre button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#tin').value=TPRE[+b.dataset.i][1];run()});
+ $('#tin').oninput=()=>{document.querySelectorAll('#tpre button').forEach(x=>x.setAttribute('aria-pressed','false'));run()};run();addEventListener('tokenizer-ready',run,{once:true})}
 
+/* ---------- 2 prediction: an n-gram model you can edit ---------- */
+const CORPUS=`You can submit on Friday before noon.
+Late work: submit on Friday with a note to the teacher.
+Drafts: submit on Thursday for comments.
+Final reports: submit on Friday at 12:00.
+Submit on Thursday if you want feedback.
+The library closes on Friday at 17:00.
+Lab meetings are on Thursday at 10:00.
+Feedback is given on Friday afternoon.`;
+const wordsOf=t=>(t.match(/[A-Za-zÆØÅæøåÀ-ÿ0-9:]+|[.,?!]/g)||[]);
+function ngram(corpus,ctx,n){const toks=[];corpus.split('\n').forEach(l=>{const w=wordsOf(l);if(w.length)toks.push(['<s>',...w])});const c=wordsOf(ctx).slice(-n).map(x=>x.toLowerCase());const counts={};let matches=0;
+ if(c.length<n)return {counts,matches,c};
+ toks.forEach(s=>{for(let i=0;i+n<s.length;i++){let ok=true;for(let j=0;j<n;j++)if(s[i+j].toLowerCase()!==c[j]){ok=false;break}if(ok){matches++;const nx=s[i+n];counts[nx]=(counts[nx]||0)+1}}});return {counts,matches,c}}
+function generate(corpus,prompt,n,len){let out=wordsOf(prompt);const gen=[];for(let k=0;k<len;k++){const {counts}=ngram(corpus,out.join(' '),n);const e=Object.entries(counts);if(!e.length)break;const tot=e.reduce((a,b)=>a+b[1],0);let r=Math.random()*tot,pick=e[0][0];for(const [w,c] of e){r-=c;if(r<=0){pick=w;break}}out.push(pick);gen.push(pick);if(pick==='.')break}return gen}
+V.prediction=()=>page('prediction','Prediction','A language model gives every possible next token a probability. The simplest model does this by counting what followed the same words in its training text. Real models learn weights instead of counts, but the output is the same kind of thing: a probability for each next token.',
+ `<h3 class="sub" style="margin-top:0">Training text (edit it: add, change or delete lines)</h3>
+ <textarea id="pcorp" rows="9" spellcheck="false">${CORPUS}</textarea>
+ <div class="row"><label>Prompt <input type="text" id="pctx" value="Drafts for comments: submit on"></label><label>Words of context <select id="pn"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label></div>
+ <p class="count" id="pinfo"></p>
+ <div id="pbars"></div>
+ <h3 class="sub">Let the model continue the prompt</h3>
+ <div class="nav"><button class="btn" id="pgen">Generate</button></div>
+ <div id="pouts" class="gens"></div>
+ <ol class="tasks"><li>With 2 words of context, which day does the model predict? Now try 3 and 4 words of context.</li><li>Add sentences to the training text until Thursday wins with 2 words of context.</li><li>Generate a few times with 2 words of context. Do any of the sentences appear in the training text? Do they sound plausible?</li></ol>`,
+ 'With short context the model has plenty of counts but ignores what came earlier (“Drafts”). With longer context it finds no matches at all. Real models solve this by learning weights and attention instead of exact counts. Generated text recombines pieces of the training text into fluent sentences that were never written, which is how confident wrong answers and invented references arise.');
+function initPrediction(){const tried=new Set();
+ const show=()=>{const n=+$('#pn').value;const {counts,matches,c}=ngram($('#pcorp').value,$('#pctx').value,n);const e=Object.entries(counts).sort((a,b)=>b[1]-a[1]);const tot=e.reduce((a,b)=>a+b[1],0);
+  $('#pinfo').innerHTML=c.length<n?'The prompt is shorter than the context length.':`Context: <b>${esc(c.join(' '))}</b>. Found ${matches} ${matches===1?'time':'times'} in the training text.`;
+  $('#pbars').innerHTML=e.length?`<div class="bars">${e.slice(0,6).map(([w,k],i)=>bar(esc(w),k/tot,i?'th':'',`${k} of ${tot}`)).join('')}</div>`:'<p class="reply" style="font-size:19px">No match. A counting model has nothing to say.</p>';
+  tried.add(n);const two=ngram($('#pcorp').value,'submit on',2).counts;
+  if(tried.has(2)&&(tried.has(3)||tried.has(4)))done('prediction',`With “submit on” the counts give Friday ${two.Friday||0}, Thursday ${two.Thursday||0}, whatever came before. With 3 or more words, “Drafts for comments: submit on” is never found.`)};
+ ['#pcorp','#pctx'].forEach(s=>$(s).oninput=show);$('#pn').onchange=show;
+ $('#pgen').onclick=()=>{const n=+$('#pn').value;const g=generate($('#pcorp').value,$('#pctx').value,n,14);const full=$('#pctx').value+' '+g.join(' ').replace(/ ([.,?!])/g,'$1');const inCorpus=$('#pcorp').value.split('\n').some(l=>l.trim()&&full.toLowerCase().includes(l.trim().toLowerCase().replace(/[.]$/,'')));
+  $('#pouts').insertAdjacentHTML('afterbegin',`<div class="gen"><span>${esc(full)}</span><small>${g.length?(inCorpus?'contains a training sentence':'not in the training text'):'no continuation'}</small></div>`)};show()}
 
-/* attention */
-const CTX={comments:{words:['Drafts','for','comments:','submit','on'],key:2,f:.1,label:'Drafts for comments: submit on …'},reports:{words:['Final','reports:','submit','on'],key:1,f:.9,label:'Final reports: submit on …'}};
-V.attention=()=>page('attention','Attention','Counting only uses the last words. Attention lets the model weigh earlier words too.',
- `<p class="task">Pick a sentence and move the slider.</p>
- <div class="seg" id="actx"><button data-c="comments" aria-pressed="true">${CTX.comments.label}</button><button data-c="reports" aria-pressed="false">${CTX.reports.label}</button></div>
- <div class="toks" id="awords"></div>
- <label class="alabel" for="aslide">Attention to <b id="aword"></b>: <b id="aval"></b></label>
- <input type="range" id="aslide" min="0" max="100" value="0" aria-describedby="aval">
- <div id="abars"></div><p class="count" id="anote2"></p>
- <p class="simple">Simplified: one weight, set by hand. Real models learn many.</p>`,
- 'The same last words give different predictions in different contexts. Nothing in the weights checks the facts.');
-function initAttention(){let c='comments';const seen={comments:0,reports:0};
- const show=()=>{const C=CTX[c],a=+$('#aslide').value/100;const pf=(1-a)*.6+a*C.f;
-  $('#awords').innerHTML=C.words.map((w,i)=>`<span class="tk"><i style="${i===C.key?`background:rgba(43,68,194,${a*.9});color:${a>.45?'#fff':'var(--ult)'}`:''}">${w}</i><small>${i===C.key?Math.round(a*100)+'%':''}</small></span>`).join('')+'<span class="tk"><i style="border-style:dashed;color:var(--mut);border-color:var(--sage)">?</i><small>next</small></span>';
-  $('#aword').textContent=C.words[C.key].replace(/:$/,'');$('#aval').textContent=Math.round(a*100)+'%';$('#abars').innerHTML=bars(pf,1-pf);
-  $('#anote2').textContent=a===0?'With no attention to earlier words, this is the counting model: Friday 60%.':`“${C.words[C.key].replace(/:$/,'')}” pulls the prediction towards ${C.f>.5?'Friday':'Thursday'}.`;
-  if(a>=.5)seen[c]=1;if(seen.comments&&seen.reports)done('attention','“comments” moved it towards Thursday, “reports” towards Friday.')};
- document.querySelectorAll('#actx button').forEach(b=>b.onclick=()=>{c=b.dataset.c;document.querySelectorAll('#actx button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#aslide').value=0;show()});
- $('#aslide').oninput=show;show()}
+/* ---------- 3 sampling with temperature ---------- */
+const CAND=[['Friday',.55],['Thursday',.35],['Monday',.06],['the',.04]];
+const tempP=T=>{if(T<=0.001){return CAND.map((c,i)=>i===0?1:0)}const l=CAND.map(([,p])=>Math.log(p)/T);const m=Math.max(...l);const e=l.map(x=>Math.exp(x-m));const s=e.reduce((a,b)=>a+b,0);return e.map(x=>x/s)};
+V.sampling=()=>page('sampling','Sampling','A chatbot does not always pick the most likely next token. It draws one at random, weighted by the probabilities. The temperature setting reshapes those probabilities before the draw.',
+ `<p class="task">The model’s probabilities for the word after “You can submit on”. Only Thursday is correct.</p>
+ <label class="alabel" for="stemp">Temperature: <b id="stv"></b></label>
+ <input type="range" id="stemp" min="0" max="200" value="100">
+ <div id="sprob"></div>
+ <h3 class="sub">Ask the same question many times</h3>
+ <div class="nav"><button class="btn" data-n="1">Ask once</button><button class="btn quiet" data-n="10">Ask 10 times</button><button class="btn quiet" data-n="100">Ask 100 times</button><button class="btn quiet" id="sreset">Clear</button></div>
+ <p class="reply" id="sreply" aria-live="polite"></p>
+ <div id="shist"></div><p class="count" id="stally"></p>
+ <ol class="tasks"><li>Ask 10 times at temperature 1. Then clear and ask 10 times again. Do you get the same split?</li><li>Ask 100 times. How close is the share of Thursday to 35%?</li><li>Set the temperature to 0 and ask again. What happens to the share of correct replies?</li><li>Set it to 2. What new kind of answer appears?</li></ol>`,
+ 'One reply tells you little about how often each answer comes up. Lowering the temperature makes the model consistent, not correct: at 0 it gives the most likely answer every time, and here that answer is wrong. Raising it lets unlikely tokens through.');
+function initSampling(){let runs=[];const tset=new Set();
+ const T=()=>+$('#stemp').value/100;
+ const showP=()=>{const p=tempP(T());$('#stv').textContent=T().toFixed(1)+(T()===0?' (always the most likely)':'');$('#sprob').innerHTML=`<div class="bars">${CAND.map(([w],i)=>bar(w,p[i],w==='Thursday'?'':'th')).join('')}</div>`};
+ const showRuns=()=>{const c={};runs.forEach(r=>c[r]=(c[r]||0)+1);const n=runs.length;$('#shist').innerHTML=n?`<div class="bars">${CAND.map(([w])=>bar(w,(c[w]||0)/n,w==='Thursday'?'':'th',`${c[w]||0}`)).join('')}</div>`:'';
+  $('#stally').textContent=n?`${n} replies. Correct (Thursday): ${Math.round(100*(c.Thursday||0)/n)}%.`:''};
+ const ask=k=>{const p=tempP(T());let last;for(let i=0;i<k;i++){let r=Math.random(),j=0;while(j<p.length-1&&r>p[j]){r-=p[j];j++}last=CAND[j][0];runs.push(last)}$('#sreply').textContent=`“You can submit on ${last}${last==='the'?' …':''}.”`;showRuns();tset.add(T()===0?0:T()>=1.5?2:1);
+  if(T()===0&&runs.length>=10)done('sampling','At temperature 0 every reply is Friday: consistent, and wrong every time.')};
+ document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>ask(+b.dataset.n));$('#sreset').onclick=()=>{runs=[];$('#sreply').textContent='';showRuns()};
+ $('#stemp').oninput=()=>{showP();runs=[];showRuns();$('#sreply').textContent=''};showP()}
 
-/* 3 sampling */
-V.sampling=()=>page('sampling','Sampling','A chatbot draws the next word at random, weighted by the probabilities: Friday 60%, Thursday 40%.',
- `<p class="task">Ask 10 times. Then turn on “Always pick the most likely word” and ask again.</p>
- <div class="nav"><button class="btn" id="ask">Ask “When do submissions close?”</button><button class="btn quiet" id="sreset">Start over</button></div><label class="toggle" style="margin-top:14px"><input type="checkbox" id="greedy" disabled> Always pick the most likely word</label>
- <p class="reply" id="sreply" aria-live="polite"></p><div class="runs" id="sruns"></div><p class="count" id="stally"></p>`,
- 'The same question gives different answers. One reply does not tell you how often each answer comes up.');
-function initSampling(){let runs=[];const draw=()=>{const d=$('#greedy').checked||Math.random()<.6?'Friday':'Thursday';runs.push(d);$('#sreply').textContent=`“You can submit on ${d}.”`;$('#sruns').innerHTML=runs.map((r,i)=>`<span class="run${r==='Thursday'?' t':''}">${i+1}. ${r}</span>`).join('');const f=runs.filter(r=>r==='Friday').length;$('#stally').textContent=`Friday ${f}, Thursday ${runs.length-f}.`;if(runs.length>=10)$('#greedy').disabled=false;if(runs.length===10)done('sampling',`You got Friday ${f} ${f===1?'time':'times'} in 10. About 6 is expected; it changes each time.`);else if(runs.length<10)$('#stally').textContent+=` Ask ${10-runs.length} more.`};$('#ask').onclick=draw;$('#sreset').onclick=()=>{runs=[];$('#greedy').checked=false;$('#greedy').disabled=!finished;$('#sreply').textContent='';$('#sruns').innerHTML='';$('#stally').textContent=''}}
+/* ---------- attention ---------- */
+const ATT={comments:{label:'Drafts for comments: submit on …',w:[['Drafts',.25],['for',.6],['comments',.05],['submit',.6],['on',.6]],learned:[3,0,4,0,0]},reports:{label:'Final reports: submit on …',w:[['Final',.7],['reports',.95],['submit',.6],['on',.6]],learned:[2,4,0,0]}};
+V.attention=()=>page('attention','Attention','Counting with a fixed context either ignores earlier words or finds nothing. Attention gives every earlier token a score. The scores are turned into weights that add up to 100% (a softmax), and the prediction is a weighted mix of what each token points to.',
+ `<div class="seg wrap" id="actx">${Object.entries(ATT).map(([k,a],i)=>`<button data-c="${k}" aria-pressed="${i===0}">${a.label}</button>`).join('')}</div>
+ <p class="task">Set how much the model attends to each earlier word. Each word also points towards a day: the small number under it is how strongly it points to Friday.</p>
+ <div id="arows" class="arows"></div>
+ <div class="nav" style="margin-top:12px"><button class="btn quiet" id="aeven">Equal scores</button><button class="btn quiet" id="alearn">Use the scores a trained model might learn</button></div>
+ <div id="abars"></div><p class="count" id="anote"></p>
+ <ol class="tasks"><li>Raise the score of one word. What happens to the weights of the others?</li><li>Find the scores that make “Drafts for comments” predict Thursday. Do the same for “Final reports”.</li><li>Press “Use the scores a trained model might learn” for both sentences. Is the prediction now right for the course?</li></ol>
+ <p class="simple">Simplified: one attention head, scores set by hand, and each word’s pointer fixed. Real models compute scores from learned vectors, in many heads and layers.</p>`,
+ 'Attention lets the same last words lead to different predictions depending on what came earlier. The weights always add up to 100%, so attending to one word means attending less to others. Nothing in the weights checks whether the course notice says Thursday.');
+function initAttention(){let c='comments';let S={comments:ATT.comments.w.map(()=>0),reports:ATT.reports.w.map(()=>0)};const hit={comments:0,reports:0};
+ const soft=s=>{const e=s.map(x=>Math.exp(x));const t=e.reduce((a,b)=>a+b,0);return e.map(x=>x/t)};
+ const show=()=>{const A=ATT[c],s=S[c],w=soft(s);const pf=A.w.reduce((a,[,v],i)=>a+w[i]*v,0);
+  document.querySelectorAll('#actx button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===c));
+  $('#arows').innerHTML=A.w.map(([t,v],i)=>`<div class="arow"><span class="tk"><i style="background:rgba(43,68,194,${(w[i]*1.6).toFixed(2)});color:${w[i]>.35?'#fff':'var(--ult)'}">${t}</i><small>→ Friday ${Math.round(v*100)}%</small></span><input type="range" min="0" max="5" step="0.5" value="${s[i]}" data-i="${i}" aria-label="Score for ${t}"><span class="aw">score ${s[i].toFixed(1)}<br><b>weight ${Math.round(w[i]*100)}%</b></span></div>`).join('');
+  document.querySelectorAll('#arows input').forEach(r=>r.oninput=()=>{S[c][+r.dataset.i]=+r.value;show()});
+  $('#abars').innerHTML=bars(pf,1-pf);
+  $('#anote').textContent=`Prediction: Friday ${Math.round(pf*100)}%, Thursday ${Math.round((1-pf)*100)}%.`;
+  if(c==='comments'&&pf<.5)hit.comments=1;if(c==='reports'&&pf>.75)hit.reports=1;
+  if(hit.comments&&hit.reports)done('attention','Attending to “comments” tips the prediction to Thursday; attending to “reports” pushes it to Friday.')};
+ document.querySelectorAll('#actx button').forEach(b=>b.onclick=()=>{c=b.dataset.c;show()});
+ $('#aeven').onclick=()=>{S[c]=S[c].map(()=>0);show()};$('#alearn').onclick=()=>{S[c]=[...ATT[c].learned];show()};show()}
 
-/* 4 training */
-V.training=()=>page('training','Training','Real models store weights, not counts. Training adjusts the weights after each sentence.',
- `<p class="task">The model starts at 50/50. Train it on the five sentences.</p>
- <div class="nav"><button class="btn" id="train1">Train on the next sentence</button><button class="btn quiet" id="train10">Train 20 more</button><button class="btn quiet" id="treset">Start over</button></div>
- <p class="note" id="tsent">&nbsp;</p><div id="tbars">${bars(.5,.5)}</div>
- <div class="weights" id="tw"></div><p class="count" id="tsteps">0 sentences seen.</p><p class="simple">Simplified: two weights. Real models have billions and generalise to new sentences, sometimes wrongly.</p>`,
- 'The model ends near the counts, 60/40. What it keeps is numbers, not facts.');
-function initTraining(){let wf=0,wt=0,step=0;const show=s=>{const ef=Math.exp(wf),et=Math.exp(wt),pf=ef/(ef+et);$('#tbars').innerHTML=bars(pf,1-pf);$('#tw').innerHTML=`<span>weight for Friday <b>${wf.toFixed(2)}</b></span><span>weight for Thursday <b>${wt.toFixed(2)}</b></span>`;$('#tsteps').textContent=`${step} sentences seen.`;if(step>=20)done('training',`After ${step} sentences the model says Friday ${Math.round(pf*100)}%, close to the 60% in the training text.`);if(s)$('#tsent').innerHTML=`Sentence: ${s[0]}<em style="font-style:normal;color:var(--ult)">${s[1]}</em>${s[2]}`};
- const one=()=>{const s=SENTS[step%5];const ef=Math.exp(wf),et=Math.exp(wt),pf=ef/(ef+et);const y=s[1]==='Friday'?1:0;const lr=1.5/(step+3);wf+=lr*(y-pf);wt+=lr*((1-y)-(1-pf));step++;return s};
- $('#train1').onclick=()=>show(one());$('#train10').onclick=()=>{let s;for(let i=0;i<20;i++)s=one();show(s)};$('#treset').onclick=()=>{wf=wt=0;step=0;$('#tsent').innerHTML='&nbsp;';show()};show()}
+/* ---------- training ---------- */
+V.training=()=>page('training','Training','Real models store weights, not counts. Training shows the model one example at a time and nudges the weights so that the word that actually came next becomes a little more likely. How big each nudge is, is the learning rate.',
+ `<div class="row"><label>Training data <span class="mix"><button class="btn quiet" id="tmf">− Friday</button> <b id="tdata"></b> <button class="btn quiet" id="tpf">+ Friday</button></span></label>
+ <label>Learning rate <b id="tlrv"></b><input type="range" id="tlr" min="1" max="30" value="2"></label></div>
+ <div class="nav" style="margin-top:14px"><button class="btn" id="t1">Train on 1 sentence</button><button class="btn quiet" id="t20">Train on 20</button><button class="btn quiet" id="t200">Train on 200</button><button class="btn quiet" id="treset">Start over</button></div>
+ <p class="note" id="tsent">&nbsp;</p>
+ <div id="tbars"></div>
+ <div class="weights" id="tw"></div>
+ <svg id="tplot" class="tplot" viewBox="0 0 600 160" preserveAspectRatio="none" aria-label="Probability of Friday during training"></svg>
+ <p class="count" id="tsteps"></p>
+ <ol class="tasks"><li>Train on 200 sentences with the default settings. Where does the model end up, and why there?</li><li>Change the training data to 4 Friday and 1 Thursday, start over and train again.</li><li>Set the learning rate to the maximum and train 200. What does the line do?</li></ol>
+ <p class="simple">Simplified: two weights and a softmax, trained by gradient descent on the cross-entropy loss. Real models train billions of weights on trillions of tokens, the same way.</p>`,
+ 'Training pulls the model towards the frequencies in its data: 3 Friday sentences in 5 give about 60% Friday, whatever the course actually says. Too large a learning rate makes it overshoot and swing instead of settling.');
+function initTraining(){let nF=3,nT=2,wf=0,wt=0,step=0,hist=[.5],lossH=[];
+ const lr=()=>+$('#tlr').value/10;
+ const data=()=>[...Array(nF).fill('Friday'),...Array(nT).fill('Thursday')];
+ const pF=()=>{const ef=Math.exp(wf),et=Math.exp(wt);return ef/(ef+et)};
+ const show=last=>{const p=pF();$('#tbars').innerHTML=bars(p,1-p);$('#tw').innerHTML=`<span>weight for Friday <b>${wf.toFixed(2)}</b></span><span>weight for Thursday <b>${wt.toFixed(2)}</b></span>`;
+  $('#tdata').textContent=`${nF} Friday, ${nT} Thursday`;$('#tlrv').textContent=lr().toFixed(1);
+  const avg=lossH.length?lossH.slice(-20).reduce((a,b)=>a+b,0)/Math.min(20,lossH.length):null;
+  $('#tsteps').textContent=`${step} sentences seen. Target from the data: Friday ${Math.round(100*nF/(nF+nT))}%.`+(avg!==null?` Average loss over the last ${Math.min(20,lossH.length)}: ${avg.toFixed(3)}.`:'');
+  if(last)$('#tsent').innerHTML=`Last sentence: submit on <em style="font-style:normal;color:var(--ult)">${last}</em>`;
+  const n=hist.length,pts=hist.map((v,i)=>`${(i/(Math.max(1,n-1)))*600},${160-v*160}`).join(' ');const ty=160-160*nF/(nF+nT);
+  $('#tplot').innerHTML=`<line x1="0" x2="600" y1="${ty}" y2="${ty}" stroke="#A3262A" stroke-dasharray="4 4"/><line x1="0" x2="600" y1="80" y2="80" stroke="#DCE0E2"/><polyline points="${pts}" fill="none" stroke="#2B44C2" stroke-width="2"/><text x="4" y="12" font-size="11" fill="#5B6670">100% Friday</text><text x="4" y="156" font-size="11" fill="#5B6670">0%</text>`;
+  if(step>=200&&Math.abs(p-nF/(nF+nT))<.06)done('training',`After ${step} sentences the model says Friday ${Math.round(p*100)}%, the share of Friday in its training data.`)};
+ const one=()=>{const d=data();const y=d[Math.floor(Math.random()*d.length)];const p=pF();const t=y==='Friday'?1:0;lossH.push(-Math.log(t?p:1-p));const g=lr();wf+=g*(t-p);wt+=g*((1-t)-(1-p));step++;hist.push(pF());if(hist.length>400)hist=hist.filter((_,i)=>i%2===0);return y};
+ const train=n=>{let y;for(let i=0;i<n;i++)y=one();show(y)};
+ $('#t1').onclick=()=>train(1);$('#t20').onclick=()=>train(20);$('#t200').onclick=()=>train(200);
+ const reset=()=>{wf=wt=0;step=0;hist=[.5];lossH=[];$('#tsent').innerHTML='&nbsp;';show()};$('#treset').onclick=reset;
+ $('#tpf').onclick=()=>{if(nF<5){nF++;nT--;reset()}};$('#tmf').onclick=()=>{if(nT<5&&nF>0){nF--;nT++;reset()}};
+ $('#tlr').oninput=()=>show();show()}
 
-/* 5 retrieval (RAG) */
+/* ---------- 4 beyond text: a protein alignment ---------- */
+const QUERY='MKTLLAG?EVRDL?AQKFG?LSE';
+const ALN=[
+ ['A','MKTLLAGIEVRDLLAQKFGELSE'],['A','MKTLLAGIEVRDLLAQKFGDLSE'],['A','MKSLLAGIEVRDLLAQKFGKLSE'],['A','MKTLLAGIEVKDLLAQKFGSLSE'],
+ ['A','MKTLMAGIEVRDLLAQRFGELSE'],['A','MKTLLAGIEVRDLLAQKFGNLSE'],['A','MRTLLAGIEVRDLLAQKFGELSE'],['A','MKTLLAGIEIRDLLAQKFGQLSE'],
+ ['B','MKTLLSGVEVRDLLAEKFGELSE'],['B','MKTLLSGVEVRDLLAEKFGDLSE'],['B','MKTLLAGVEVRDLIAEKFGELSE'],['B','MKSLLSGIEVRDLLAEKFGALSE'],
+];
+const MASK=[...QUERY].map((c,i)=>c==='?'?i:-1).filter(i=>i>=0);
+const TRUTH={7:'I',13:'I',19:'K'};
+const AANAME={A:'alanine',D:'aspartate',E:'glutamate',G:'glycine',I:'isoleucine',K:'lysine',L:'leucine',M:'methionine',N:'asparagine',Q:'glutamine',R:'arginine',S:'serine',V:'valine'};
+V.beyond=()=>page('beyond','Beyond text','Tokens do not have to be words. The same kind of model is trained on protein sequences, DNA, images and nanopore signal. Here the tokens are amino acids, and the “training text” is a set of related sequences.',
+ `<p class="task">A new fragment from a sample of your own, with three unknown residues. Click a <span class="q">?</span> to see what the training sequences say at that position.</p>
+ <p class="aln" id="bq">${[...QUERY].map((c,i)=>c==='?'?`<button class="qpos" data-i="${i}" aria-pressed="false">?</button>`:c).join('')}</p>
+ <div class="seg" id="bset"><button data-s="all" aria-pressed="true">Train on all 12 sequences</button><button data-s="A" aria-pressed="false">Only the 8 from group A</button><button data-s="B" aria-pressed="false">Only the 4 from group B</button></div>
+ <div class="alnbox" id="baln"></div>
+ <div id="bbars"></div><p class="count" id="binfo">Pick a position.</p>
+ <div class="nav"><button class="btn quiet" id="breveal">Sequence the fragment: show the real residues</button></div><p class="reply" id="btruth" style="font-size:19px"></p>
+ <ol class="tasks"><li>Look at all three positions. Which prediction looks most certain, and which least?</li><li>Reveal the real residues. Was the most certain prediction right?</li><li>Change the training set to group B only. Which predictions change?</li></ol>
+ <p class="simple">Invented sequences. Protein language models such as ESM-2 use attention over the whole sequence rather than one column, but they share the property shown here: they predict what is common in their training data.</p>`,
+ 'The prediction is the most common residue in the training sequences, and its confidence says how common, not whether it is right for your sample. Which sequences are in the training set changes the answer.');
+function initBeyond(){let pos=null,set='all',revealed=false;
+ const rows=()=>ALN.filter(([g])=>set==='all'||g===set);
+ const show=()=>{const R=rows();document.querySelectorAll('#bset button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===set));document.querySelectorAll('.qpos').forEach(b=>{b.setAttribute('aria-pressed',+b.dataset.i===pos);if(revealed)b.textContent=TRUTH[b.dataset.i]});
+  $('#baln').innerHTML=R.map(([g,s])=>`<div class="alnrow"><small>${g}</small><span>${[...s].map((c,i)=>i===pos?`<b>${c}</b>`:MASK.includes(i)?`<u>${c}</u>`:c).join('')}</span></div>`).join('');
+  if(pos===null){$('#bbars').innerHTML='';return}
+  const c={};R.forEach(([,s])=>c[s[pos]]=(c[s[pos]]||0)+1);const e=Object.entries(c).sort((a,b)=>b[1]-a[1]);
+  $('#bbars').innerHTML=`<div class="bars">${e.map(([a,k],i)=>bar(`${a} (${AANAME[a]||a})`,k/R.length,i?'th':'',`${k} of ${R.length}`)).join('')}</div>`;
+  $('#binfo').textContent=`Position ${pos+1}: the model predicts ${e[0][0]} with ${Math.round(100*e[0][1]/R.length)}%.`+(revealed?` The fragment has ${TRUTH[pos]}.`:'')};
+ document.querySelectorAll('.qpos').forEach(b=>b.onclick=()=>{pos=+b.dataset.i;show()});
+ document.querySelectorAll('#bset button').forEach(b=>b.onclick=()=>{set=b.dataset.s;show()});
+ $('#breveal').onclick=()=>{revealed=true;$('#btruth').innerHTML=`The fragment reads ${[...QUERY].map((c,i)=>c==='?'?`<b>${TRUTH[i]}</b>`:c).join('')}. Position 8: I, as most sequences said. Position 14: 11 of 12 sequences have L, but this fragment has I, so the most confident prediction was wrong. Position 20 was never certain, and the fragment has K, seen in only one sequence.`;show();done('beyond','At position 14 the prediction was 92% L and the fragment has I. Confidence measures how common a residue is in the training set, not whether it is right for your sample.')};
+ show()}
+
+/* ---------- 5 retrieval ---------- */
 const DOCS=[
- {t:'Course notice',x:NOTICE,good:true},
- {t:'Library opening times',x:'Opening times: the library closes at 17:00 on Fridays and at 20:00 on other weekdays.'},
+ {t:'Course notice, 2026',x:'Submissions close Thursday at 17:00. Friday is for feedback.'},
+ {t:'Course notice, 2025',x:'Submissions close Friday at 12:00. Late submissions are not accepted.'},
+ {t:'Feedback sessions',x:'Feedback sessions run on Friday. Bring your draft submission to the session.'},
+ {t:'Library opening times',x:'The library closes at 17:00 on Fridays and at 20:00 on other weekdays.'},
+ {t:'Thesis rules',x:'The PhD thesis is submitted to the graduate school no later than three months before the defence.'},
  {t:'Seminar room',x:'The seminar room is booked on Friday mornings for the journal club.'},
- {t:'Exam rules',x:'Exam questions are submitted by the teacher two weeks before the exam.'},
+ {t:'Lab safety',x:'Close the fume hood before you leave the lab.'},
 ];
-const STOP=new Set('a an the is are do does did when what which who how to of on in at for and or it its by be you your i my we can will before after other'.split(' '));
-const stem=w=>w.toLowerCase().replace(/[^a-zæøå0-9]/g,'').replace(/(ions|ion|ed|ing|s)$/,'');
-const words=t=>(t.match(/[A-Za-zÆØÅæøå0-9]+/g)||[]).filter(w=>!STOP.has(w.toLowerCase())).map(stem).filter(Boolean);
-function search(q){const qw=new Set(words(q));return DOCS.map(d=>{const hit=[...new Set(words(d.x))].filter(w=>qw.has(w));return {...d,score:hit.length,hit}}).sort((a,b)=>b.score-a.score)}
+const STOP=new Set('a an the is are do does did when what which who how to of on in at for and or it its by be you your i my we can will before after other no not than'.split(' '));
+const stem=w=>w.toLowerCase().replace(/[^a-zæøå0-9]/g,'').replace(/(ions|ion|ings|ing|ed|es|s|e)$/,'');
+const termsOf=t=>(t.match(/[A-Za-zÆØÅæøå0-9]+/g)||[]).filter(w=>!STOP.has(w.toLowerCase())).map(stem).filter(Boolean);
+const DF=(()=>{const df={};DOCS.forEach(d=>new Set(termsOf(d.x)).forEach(w=>df[w]=(df[w]||0)+1));return df})();
+const idf=w=>Math.log(1+(DOCS.length-(DF[w]||0)+.5)/((DF[w]||0)+.5));
+function rank(q){const qw=[...new Set(termsOf(q))];return DOCS.map((d,i)=>{const tw=termsOf(d.x);const hit=qw.filter(w=>tw.includes(w));const score=hit.reduce((s,w)=>s+idf(w),0);return {...d,i,hit,score}}).sort((a,b)=>b.score-a.score||a.i-b.i)}
 const mark=(text,hit)=>text.replace(/[A-Za-zÆØÅæøå0-9]+/g,w=>hit.includes(stem(w))&&!STOP.has(w.toLowerCase())?`<mark>${w}</mark>`:w);
-V.retrieval=()=>page('retrieval','Retrieval (RAG)','RAG (retrieval-augmented generation): a search puts a matching document in the model’s window before it answers.',
- `<p class="task">Try all three questions.</p>
- <div class="seg" id="rq">${['When do submissions close?','What time does it close on Friday?','What is the deadline?'].map((q,i)=>`<button data-q="${q}" aria-pressed="${i===0}">${q}</button>`).join('')}</div>
- <h3 class="sub">1. Search: documents ranked by shared words</h3>
+const QEX=['When do submissions close?','Are late submissions accepted?','What is the deadline for my draft?','When can I submit my thesis?'];
+V.retrieval=()=>page('retrieval','Retrieval','Retrieval-augmented generation (RAG): before the model answers, a search picks documents and pastes them into the context window. The model then writes a reply from whatever it was given.',
+ `<p class="task">Ask your own question about the course, or start from an example.</p>
+ <div class="seg wrap" id="rq">${QEX.map(q=>`<button data-q="${q}" aria-pressed="false">${q}</button>`).join('')}</div>
+ <input type="text" id="rin" value="${QEX[0]}" aria-label="Your question">
+ <div class="row"><label>Documents put in the window <select id="rk"><option>1</option><option selected>2</option><option>3</option></select></label></div>
+ <h3 class="sub">1. Search: documents ranked by shared words (rarer words count more)</h3>
  <table><thead><tr><th>Document</th><th>Shared words</th><th>Score</th></tr></thead><tbody id="rrank"></tbody></table>
- <h3 class="sub">2. Window: what the model sees</h3>
+ <h3 class="sub">2. Window: the text the model receives</h3>
  <div class="window"><div id="rwin"></div></div>
- <h3 class="sub">3. Generate</h3>
- <div class="nav"><button class="btn" id="rgen">Generate a reply</button></div>
+ <h3 class="sub">3. Reply</h3>
  <p class="reply" id="rreply" aria-live="polite"></p><p class="count" id="rexplain"></p>
- <p class="simple">Simplified: word matching and fixed probabilities. Real assistants match by meaning and still pick wrong passages.</p>`,
- 'The search decides what the model sees. A wrong or missing document still gives a confident reply.');
-function initRetrieval(){let q='When do submissions close?';const asked=new Set();
- const show=()=>{const r=search(q);const top=r[0].score>0?r[0]:null;
-  $('#rrank').innerHTML=r.map((d,i)=>`<tr${i===0&&top?' class="top"':''}><td>${d.t}${i===0&&top?' <span class="pick">in window</span>':''}<div class="dx">${mark(d.x,d.hit)}</div></td><td>${d.hit.join(', ')||'none'}</td><td>${d.score}</td></tr>`).join('');
-  $('#rwin').innerHTML=(top?`<div class="wline doc"><small>${top.t}, found by the search</small>${top.x}</div>`:'<div class="wline doc"><small>Search</small>No document shared any words with the question. Nothing was added.</div>')+`<div class="wline"><small>Your question</small>${q}</div>`;
-  $('#rreply').textContent='';$('#rexplain').textContent='';return top};
- $('#rgen').onclick=()=>{const top=search(q)[0];let reply,why;
-  if(top.score===0){const d=Math.random()<.6?'Friday':'Thursday';reply=`“The deadline is ${d}.”`;why='Nothing from your documents was in the window, so the reply comes from the training text alone: Friday 60%, Thursday 40%.'}
-  else if(top.good){const d=Math.random()<.15?'Friday':'Thursday';reply=d==='Thursday'?'“Submissions close Thursday at 17:00.”':'“You can submit on Friday.”';why=d==='Thursday'?'Taken from the course notice in the window.':'The right passage was in the window, but it also mentions Friday, and Friday was drawn this time.'}
-  else{reply='“It closes at 17:00 on Friday.”';why=`The search picked “${top.t}”, which shares the words ${top.hit.map(w=>'“'+w+'”').join(', ')} with your question. If you meant the submission deadline, this fluent reply is about the wrong thing.`}
-  $('#rreply').textContent=reply;$('#rexplain').textContent=why+(asked.has(q)||asked.size>=2?'':` Try the other questions.`);asked.add(q);
-  if(asked.size>=3)done('retrieval','The wording of the question decided which document reached the window.')};
- document.querySelectorAll('#rq button').forEach(b=>b.onclick=()=>{q=b.dataset.q;document.querySelectorAll('#rq button').forEach(x=>x.setAttribute('aria-pressed',x===b));show()});show()}
+ <ol class="tasks"><li>Try the four examples. For which ones is the reply right?</li><li>Write your own question about the deadline that puts last year’s notice first.</li><li>Ask about the “deadline” instead of when submissions “close”. Which document wins?</li></ol>
+ <p class="simple">Simplified: word matching and a reply rule. Real assistants match by meaning, which handles synonyms better, but they still retrieve outdated or wrong passages, and the reply sounds just as sure.</p>`,
+ 'The search decides what the model sees. An outdated or unrelated document produces a fluent reply that cites it. When nothing relevant is found, the model falls back on its training text. Check which passage a reply came from, and how old it is.');
+function initRetrieval(){const seen=new Set();
+ const show=()=>{const q=$('#rin').value;const k=+$('#rk').value;const r=rank(q);const top=r.filter(d=>d.score>0).slice(0,k);
+  $('#rrank').innerHTML=r.map(d=>{const inw=top.includes(d);return `<tr${inw?' class="top"':''}><td>${d.t}${inw?' <span class="pick">in window</span>':''}<div class="dx">${mark(d.x,d.hit)}</div></td><td>${d.hit.join(', ')||'none'}</td><td>${d.score.toFixed(1)}</td></tr>`}).join('');
+  $('#rwin').innerHTML=`<div class="wline"><small>Instruction from the provider</small>Answer the student using the documents below.</div>`+(top.length?top.map(d=>`<div class="wline doc"><small>${d.t}</small>${d.x}</div>`).join(''):'<div class="wline doc"><small>Search</small>No document shared any words with the question.</div>')+`<div class="wline"><small>Question</small>${esc(q)}</div>`;
+  let reply,why;const first=top[0];
+  const day=first&&first.x.split(/(?<=\.)\s+/).find(s=>/\b(Monday|Tuesday|Wednesday|Thursday|Friday)/.test(s));
+  if(!first){reply='“You can submit on Friday.”';why='Nothing relevant reached the window, so the reply comes from the training text alone, where Friday is most common.'}
+  else if(first.t==='Course notice, 2026'){reply='“Submissions close Thursday at 17:00.”';why='Taken from this year’s notice, the first document in the window.'}
+  else if(day){reply=`“${day}” (source: ${first.t})`;why=`The first document in the window was “${first.t}”. The reply cites it and sounds certain.${first.t==='Course notice, 2025'?' It is last year’s deadline.':''}`}
+  else{reply=`“${first.x.split(/(?<=\.)\s+/)[0]}” (source: ${first.t})`;why=`The reply is built from “${first.t}”, the first document in the window.`}
+  $('#rreply').textContent=reply;$('#rexplain').textContent=why;seen.add(first?first.t:'none');
+  if(seen.has('Course notice, 2025')&&seen.size>=3)done('retrieval','Different wording put different documents first, including last year’s notice.')};
+ let tm;$('#rin').oninput=()=>{document.querySelectorAll('#rq button').forEach(x=>x.setAttribute('aria-pressed','false'));clearTimeout(tm);tm=setTimeout(show,250)};$('#rk').onchange=show;
+ document.querySelectorAll('#rq button').forEach(b=>b.onclick=()=>{$('#rin').value=b.dataset.q;document.querySelectorAll('#rq button').forEach(x=>x.setAttribute('aria-pressed',x===b));show()});show()}
 
-/* 6 agents */
-const LOOP=[
- ['You','Which column of assistant_trials.csv says how many replies were correct?',''],
- ['Model','Asks for a tool: <code>read_first_line("assistant_trials.csv")</code>','The model cannot open files. It only writes a request.'],
- ['Program','Runs the tool and adds the result: <code>task,correct_replies,trials</code>','The program around the model does the reading.'],
- ['Model','Answers: “The column is correct_replies.”','The model wrote its answer from what the tool returned.'],
+/* ---------- 6 agents: loop, permissions and checking ---------- */
+const TOOLS=[['read','Read a file'],['run','Run code'],['delete','Delete files']];
+const TRACE=[
+ {who:'You',t:'What is the mean score in scores.csv?'},
+ {who:'Model',t:'I will look at the file first.',tool:'read',call:'read_file("scores.csv")',res:'score\n2\n4\n\n(third row is blank: not measured)'},
+ {who:'Model',t:'One value is missing. I will fill it and compute the mean.',tool:'run',call:'python analysis.py',code:'import pandas as pd\ndf = pd.read_csv("scores.csv")\ndf["score"] = df["score"].fillna(0)\nprint(df["score"].mean())',res:'2.0'},
+ {who:'Model',t:'I will tidy up the temporary files.',tool:'delete',call:'delete("raw_data/")',res:'Folder raw_data/ deleted.'},
+ {who:'Model',t:'The mean score is 2.0.'},
 ];
-V.agents=()=>page('agents','Agents','An agent is a program that runs a loop around the model: the model asks for a tool, the program runs it, and the result goes back to the model.',
- `<p class="task">Step through one loop.</p>
- <div class="who" id="awho"><span>You</span><span>Model</span><span>Program</span></div>
+V.agents=()=>page('agents','Agents','An agent is a program that runs a loop around the model. The model writes a request for a tool; the program decides whether to run it, runs it, and puts the result back into the window. The rules the program follows are called permissions.',
+ `<p class="task">First set the permissions. Then step through the agent’s work.</p>
+ <table><thead><tr><th>Tool</th><th>Rule</th></tr></thead><tbody id="aperm"></tbody></table>
+ <div class="who" id="awho" style="margin-top:20px"><span>You</span><span>Model</span><span>Program</span></div>
  <div class="window"><h3>What the model sees</h3><div id="awin"></div></div>
- <p class="note" id="anote">&nbsp;</p>
- <div class="nav"><button class="btn" id="anext">Next step</button><button class="btn quiet" id="areset">Start over</button></div>`,
- 'The model only writes text. The program around it opens files and runs code.');
-function initAgents(){let k=0;const show=()=>{$('#awin').innerHTML=LOOP.slice(0,k).map(([w,t])=>`<div class="wline${w==='Program'?' doc':''}"><small>${w}</small>${t}</div>`).join('')||'<p class="note">Empty.</p>';document.querySelectorAll('#awho span').forEach(s=>s.classList.toggle('act',k>0&&s.textContent===LOOP[k-1][0]));$('#anote').textContent=k?LOOP[k-1][2]||' ':' ';$('#anext').disabled=k>=LOOP.length;if(k>=3)done('agents','The program opened the file. The model only wrote the request and the answer.')};$('#anext').onclick=()=>{k++;show()};$('#areset').onclick=()=>{k=0;show()};show()}
-
-/* beyond text */
-const ALN=['MKTLLVAG','MKSLLVAG','MRTLLIAG','MKTLIVAG','MKTLLVSG'],COL=4;
-const bars2=items=>`<div class="bars">${items.map(([l,v],i)=>`<div class="bar${i?' th':''}"><span>${l}</span><span class="tr"><span class="fill" style="width:${v*100}%"></span></span><b>${Math.round(v*100)}%</b></div>`).join('')}</div>`;
-V.beyond=()=>page('beyond','Beyond text','Tokens do not have to be words. The same kind of model is trained on protein sequences, DNA, images and nanopore signal.',
- `<p class="task">Click each related sequence to count the residue at the unknown position.</p>
- <p class="aln">MKTL<span class="q">?</span>VAG</p>
- <ol class="sents" id="bseqs">${ALN.map((q,i)=>`<li><button data-i="${i}" class="aln">${q.slice(0,COL)}<span class="col">${q[COL]}</span>${q.slice(COL+1)}</button></li>`).join('')}</ol>
- <div id="bbars">${bars2([['L (leucine)',0],['I (isoleucine)',0]])}</div><p class="count" id="bcount">0 of 5 sequences counted.</p>
- <p class="simple">Simplified: counting one column of five invented sequences. Protein models such as ESM-2 use attention over the whole sequence. Other models change the output: AlphaFold2 predicts a 3D structure, a basecaller predicts bases from signal.</p>`,
- 'The counting is the same; the tokens are amino acids. The prediction tells you what is common in the training sequences, not what is in your sample.');
-function initBeyond(){const seen=new Set();document.querySelectorAll('#bseqs button').forEach(b=>b.onclick=()=>{seen.add(+b.dataset.i);b.classList.add('done');const l=[...seen].filter(i=>ALN[i][COL]==='L').length,n=seen.size;$('#bbars').innerHTML=bars2([['L (leucine)',l/5],['I (isoleucine)',(n-l)/5]]);$('#bcount').textContent=`${n} of 5 sequences counted: L ${l}, I ${n-l}.`;if(n===5)done('beyond','The counts say leucine, 4 of 5. This fragment was sequenced and has isoleucine: the common answer was wrong here, like Friday.')})}
-
-/* permissions */
-const REQS=[['read','Read assistant_trials.csv','task,correct_replies,trials'],['run','Run count_correct.py','Find the deadline: 3 of 4. Quote the rule: 1 of 4.'],['del','Delete the folder raw_data/','Folder deleted.']];
-V.permissions=()=>page('permissions','Permissions','The program around the model decides which tool requests are carried out. These rules are called permissions.',
- `<p class="task">The agent makes three requests. Set the rules so that it can do the analysis but cannot delete data.</p>
- <table><thead><tr><th>The model asks to</th><th>Rule</th><th>What happens</th></tr></thead><tbody id="prows"></tbody></table>
- <p class="result" id="pres"></p>`,
- 'Permissions are set in the program, not in the model. A blocked request returns only “permission denied” to the model.');
-function initPermissions(){const P={read:1,run:1,del:1};let changed=false;
- const show=()=>{$('#prows').innerHTML=REQS.map(([k,t,r])=>`<tr><td>${t}</td><td><div class="seg" style="margin:0"><button data-k="${k}" data-v="1" aria-pressed="${P[k]===1}">Allow</button><button data-k="${k}" data-v="0" aria-pressed="${P[k]===0}">Deny</button></div></td><td class="${P[k]?'':'fail'}">${P[k]?`Carried out. The model receives: <code>${r}</code>`:'Blocked. The model receives: <code>permission denied</code>'}</td></tr>`).join('');
-  const ok=P.read&&P.run&&!P.del;$('#pres').textContent=P.del?'With these rules the agent can delete raw_data/.':ok?'The analysis runs and the data cannot be deleted.':'The data are safe, but the agent cannot finish the analysis.';
-  document.querySelectorAll('#prows button').forEach(b=>b.onclick=()=>{P[b.dataset.k]=+b.dataset.v;changed=true;show()});
-  if(changed&&ok)done('permissions','Deny on delete stopped the request in the program. The model could still ask.')};show()}
-
-/* checking the code */
-V.code=()=>page('code','Checking the code','An agent wrote a script to average three scores. One score is blank because it was not measured.',
- `<p class="task">Run the script, then work out the answer by hand.</p>
- <pre class="code" id="cinput">scores.csv
-score
-2
-4
-          ← blank: not measured</pre>
- <pre class="code" id="csrc">import pandas as pd
-df = pd.read_csv("scores.csv")
-<span id="cbad">df["score"] = df["score"].fillna(0)</span>
-print(df["score"].mean())</pre>
- <div class="nav"><button class="btn" id="crun">Run the script</button></div>
- <p class="reply" id="cout" aria-live="polite"></p>
- <div id="chand" hidden><p class="task">What is the mean of the two measured scores?</p><div class="seg" id="copts"><button data-v="2">2</button><button data-v="3">3</button><button data-v="4">4</button></div><p class="count" id="cexp"></p></div>`,
- 'The script ran without an error and printed a wrong mean. A three-value input with a known answer was enough to find it.');
-function initCode(){$('#crun').onclick=()=>{$('#cout').textContent='Output: 2.0';$('#chand').hidden=false};
+ <div id="aask"></div>
+ <div class="nav"><button class="btn" id="anext">Next step</button><button class="btn quiet" id="areset">Start over</button></div>
+ <div id="acheck" hidden><h3 class="sub">Check the answer</h3><p class="task">The two measured scores are 2 and 4. What is their mean?</p><div class="seg" id="copts"><button data-v="2">2</button><button data-v="3">3</button><button data-v="4">4</button></div><p class="count" id="cexp"></p></div>
+ <ol class="tasks"><li>Run it with everything allowed. What happened to raw_data/?</li><li>Set the rules so that the analysis runs but nothing can be deleted, and run it again.</li><li>Is the final answer right? Find the line that causes it.</li></ol>`,
+ 'The model only writes requests; the program around it reads files, runs code and deletes folders, if the permissions let it. A script that runs without errors can still be wrong: here it counted the missing value as zero. A tiny input with a known answer was enough to catch it.');
+function initAgents(){const P={read:'allow',run:'allow',delete:'allow'};let k=0,log=[],waiting=null,runs=0,deleted=false,blocked=new Set();
+ const perm=()=>{$('#aperm').innerHTML=TOOLS.map(([id,l])=>`<tr><td>${l}</td><td><div class="seg" style="margin:0">${['allow','ask','deny'].map(v=>`<button data-k="${id}" data-v="${v}" aria-pressed="${P[id]===v}">${v[0].toUpperCase()+v.slice(1)}</button>`).join('')}</div></td></tr>`).join('');document.querySelectorAll('#aperm button').forEach(b=>b.onclick=()=>{P[b.dataset.k]=b.dataset.v;perm()})};
+ const render=()=>{$('#awin').innerHTML=log.map(l=>`<div class="wline${l.who==='Program'?' doc':''}${l.bad?' badl':''}"><small>${l.who}</small>${l.html}</div>`).join('')||'<p class="note">Empty.</p>';document.querySelectorAll('#awho span').forEach(s=>s.classList.toggle('act',!!log.length&&s.textContent===log[log.length-1].who));$('#anext').disabled=k>=TRACE.length||!!waiting};
+ const exec=(s,ok)=>{if(!ok){blocked.add(s.tool);log.push({who:'Program',html:`Blocked <code>${s.call}</code>. The model receives: <code>permission denied</code>`,bad:true});return}
+  if(s.tool==='delete')deleted=true;log.push({who:'Program',html:`Ran <code>${s.call}</code>. Result: <pre class="code">${esc(s.res)}</pre>`})};
+ const step=()=>{const s=TRACE[k++];if(!s)return;
+  if(s.who==='You'){log.push({who:'You',html:esc(s.t)})}
+  else if(!s.tool){const fail=blocked.has('read')||blocked.has('run');log.push({who:'Model',html:(fail?'I could not finish the analysis: permission denied.':esc(s.t))+(k===TRACE.length&&deleted?' <em>(raw_data/ is gone.)</em>':'')});if(k===TRACE.length){runs++;$('#acheck').hidden=false}}
+  else{log.push({who:'Model',html:`${esc(s.t)} Requests <code>${s.call}</code>${s.code?`<pre class="code">${s.code.replace('df["score"] = df["score"].fillna(0)','<span class="hl">df["score"] = df["score"].fillna(0)</span>')}</pre>`:''}`});
+   const rule=P[s.tool];if(rule==='ask'){waiting=s;$('#aask').innerHTML=`<div class="askbox"><p>The program asks you: allow <code>${s.call}</code>?</p><div class="nav"><button class="btn" id="ayes">Allow</button><button class="btn quiet" id="ano">Deny</button></div></div>`;$('#ayes').onclick=()=>{exec(waiting,true);waiting=null;$('#aask').innerHTML='';render()};$('#ano').onclick=()=>{exec(waiting,false);waiting=null;$('#aask').innerHTML='';render()}}
+   else exec(s,rule==='allow')}
+  render()};
+ $('#anext').onclick=step;$('#areset').onclick=()=>{k=0;log=[];waiting=null;deleted=false;blocked=new Set();$('#aask').innerHTML='';render()};
  document.querySelectorAll('#copts button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#copts button').forEach(x=>x.setAttribute('aria-pressed',x===b));const v=+b.dataset.v;
-  if(v===3){$('#cexp').textContent='(2 + 4) ÷ 2 = 3. The script printed 2.0: the highlighted line replaced the blank with 0, so it computed (2 + 4 + 0) ÷ 3.';$('#cbad').className='bad';done('code','By hand the mean is 3; the script printed 2.0.')}
-  else $('#cexp').textContent=v===2?'That is what the script printed. Add the two measured scores and divide by two.':'Add the two measured scores and divide by two.'})}
+  if(v===3){$('#cexp').textContent='(2 + 4) ÷ 2 = 3. The agent said 2.0: the highlighted line replaced the blank with 0, so it computed (2 + 4 + 0) ÷ 3.';document.querySelectorAll('.hl').forEach(x=>x.classList.add('bad'));done('agents','The script ran without an error and reported 2.0; the right mean of the measured scores is 3.')}
+  else $('#cexp').textContent=v===2?'That is what the agent reported. Add the two measured scores and divide by two.':'Add the two measured scores and divide by two.'});
+ perm();render()}
 
-/* 7 evaluation */
-V.evaluation=()=>page('evaluation','Evaluation','Classmates asked the assistant two questions, four times each. Choose how many correct replies a task needs, then try another threshold.',
- `<p class="task">Correct replies a task needs to pass:</p>
- <div class="seg" id="eseg">${[1,2,3,4].map(n=>`<button aria-pressed="false" data-n="${n}">${n} of 4</button>`).join('')}</div>
- <table><thead><tr><th>Task</th><th>Correct replies</th><th>Result</th></tr></thead><tbody id="ebody"></tbody></table>
- <p class="result" id="eres"></p>`,
- 'The same results pass or fail depending on the threshold. Choose it before you look.');
-function initEvaluation(){const T=[['Find the deadline',3],['Quote the rule',1]];const show=n=>{document.querySelectorAll('#eseg button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.n===n));$('#ebody').innerHTML=T.map(([t,c])=>`<tr><td>${t}</td><td>${c} of 4</td><td class="${n?(c>=n?'pass':'fail'):''}">${n?(c>=n?'Pass':'Fail'):'–'}</td></tr>`).join('');if(!n){$('#eres').textContent='Choose a threshold.';return}const p=T.filter(x=>x[1]>=n).length;$('#eres').textContent=`${p} of 2 tasks pass.`;tried.add(n);if(tried.size>=2)done('evaluation','Threshold 1: both pass. 2 or 3: one passes. 4: none.')};const tried=new Set();document.querySelectorAll('#eseg button').forEach(b=>b.onclick=()=>show(+b.dataset.n));show(0)}
+/* ---------- 7 evaluation ---------- */
+function wilson(k,n){if(!n)return [0,1];const z=1.96,p=k/n,d=1+z*z/n,c=(p+z*z/(2*n))/d,h=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n))/d;return [Math.max(0,c-h),Math.min(1,c+h)]}
+const TASKS=[['Give the deadline',.7],['Quote the late-work rule',.4],['Summarise the notice',.9]];
+V.evaluation=()=>page('evaluation','Evaluation','Before you rely on a tool for a task, test it: run the task several times, decide what counts as a pass, and look at how uncertain the result is.',
+ `<p class="task">1. Decide your bar first: the share of correct replies a task needs.</p>
+ <label class="alabel" for="ebar">Pass if at least <b id="ebv"></b> of replies are correct</label><input type="range" id="ebar" min="50" max="100" step="5" value="80">
+ <p class="task" style="margin-top:22px">2. Choose how many times to run each task, then run the test.</p>
+ <div class="seg" id="en">${[10,50,200].map((n,i)=>`<button data-n="${n}" aria-pressed="${i===0}">${n} runs per task</button>`).join('')}</div>
+ <div class="nav"><button class="btn" id="erun">Run the test</button></div>
+ <table style="margin-top:18px"><thead><tr><th>Task</th><th>Correct</th><th>Share</th><th>95% interval</th><th>Result</th></tr></thead><tbody id="ebody"></tbody></table>
+ <div id="eplot"></div><p class="result" id="eres"></p>
+ <ol class="tasks"><li>Run with 10 runs per task. Which tasks pass? How wide are the intervals?</li><li>Run again with 10. Did any result flip?</li><li>Run with 200. Which conclusions hold now?</li></ol>
+ <p class="simple">The replies are simulated: the assistant is right 70%, 40% and 90% of the time on the three tasks. In real testing you do not know these numbers, which is the point.</p>`,
+ 'A handful of tries cannot tell a 70% tool from a 90% one. Set the bar before you look, run enough times, and report the uncertainty, as you would for any measurement.');
+function initEvaluation(){let N=10,res=null,count=0;const ns=new Set();
+ const show=()=>{const b=+$('#ebar').value/100;$('#ebv').textContent=Math.round(b*100)+'%';if(!res){$('#ebody').innerHTML=TASKS.map(([t])=>`<tr><td>${t}</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>`).join('');$('#eplot').innerHTML='';$('#eres').textContent='';return}
+  $('#ebody').innerHTML=res.map(({t,k,n})=>{const [lo,hi]=wilson(k,n);const p=k/n;const v=lo>=b?'Pass':hi<b?'Fail':'Unclear';return `<tr><td>${t}</td><td>${k} of ${n}</td><td>${Math.round(p*100)}%</td><td>${Math.round(lo*100)}–${Math.round(hi*100)}%</td><td class="${v==='Pass'?'pass':v==='Fail'?'fail':''}">${v}</td></tr>`}).join('');
+  $('#eplot').innerHTML=`<div class="ci">${res.map(({t,k,n})=>{const [lo,hi]=wilson(k,n);return `<div class="cirow"><span>${t}</span><span class="citr"><span class="cibar" style="left:${lo*100}%;width:${(hi-lo)*100}%"></span><span class="cidot" style="left:${k/n*100}%"></span><span class="cibarline" style="left:${b*100}%"></span></span></div>`}).join('')}<div class="cirow"><span></span><span class="ciax"><span>0%</span><span>50%</span><span>100%</span></span></div></div>`;
+  const unclear=res.filter(({k,n})=>{const [lo,hi]=wilson(k,n);return lo<b&&hi>=b}).length;$('#eres').textContent=unclear?`${unclear} of 3 ${unclear===1?'task is':'tasks are'} unclear: the interval crosses your bar.`:'Every task is clearly above or below your bar.'};
+ const run=()=>{res=TASKS.map(([t,p])=>{let k=0;for(let i=0;i<N;i++)if(Math.random()<p)k++;return {t,k,n:N}});count++;ns.add(N);show();if(ns.has(10)&&ns.has(200))done('evaluation','With 10 runs the intervals are about 50 points wide; with 200 they narrow to about 13.')};
+ document.querySelectorAll('#en button').forEach(b=>b.onclick=()=>{N=+b.dataset.n;document.querySelectorAll('#en button').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+ $('#erun').onclick=run;$('#ebar').oninput=show;show()}
 
 V.discussion=()=>`<h1>Before the discussion</h1>
 <h2 style="font-size:24px;margin:0 0 6px">Check your understanding</h2>
 <ol class="check" id="check">${CHECK.map((c,i)=>`<li><p>${i+1}. ${c.q}</p><div class="opts">${c.opts.map((o,j)=>`<button data-q="${i}" data-j="${j}" aria-pressed="false">${o}</button>`).join('')}</div><p class="ans" id="ans${i}"></p></li>`).join('')}</ol>
-<h2 style="font-size:24px;margin:0 0 6px">Questions for the discussion</h2><p class="note" style="margin:0 0 8px">If you would rather not say yours out loud, the Mentimeter question stays open until the end of the day.</p>
+<h2 style="font-size:24px;margin:0 0 6px">Questions for the discussion</h2>
 <ol class="qs"><li>Which step changed how you think about these tools, if any?</li><li>Where would you trust a language model in your own research, and where would you not?</li><li>What would you want from Globe: training, rules, tools, or none of these?</li></ol>
-<div class="take"><div class="nav"><a class="btn ghost" href="#evaluation">Back</a><a class="btn quiet" href="#training">If you have time: Training</a></div></div>`;
+<div class="take"><div class="nav"><a class="btn ghost" href="#evaluation">Back</a></div></div>`;
 
 const CHECK=[
- {q:'A chatbot gives you a reference that looks right. What do you know?',opts:['It exists','It is likely-looking text; check it','It came from a database'],ans:1,why:'The model produces likely text. A reference can look right and not exist; look it up.'},
- {q:'You ask the same question twice and get different answers. Why?',opts:['The model was updated in between','The reply is drawn from probabilities','Someone edited the answer'],ans:1,why:'Each reply is a new random draw from the same probabilities.'},
- {q:'An assistant has your paper in its window and summarises it. The summary is…',opts:['Correct, because the paper was there','More likely correct, still to check','Copied word for word'],ans:1,why:'The paper in the window makes a good summary more likely, not certain. Check the claims you will use.'},
+ {q:'A chatbot gives you a reference that looks right. What do you know?',opts:['It exists','It is likely-looking text; check it','It came from a database'],ans:1,why:'The model recombines likely text, as in the Prediction step. A reference can look right and not exist; look it up.'},
+ {q:'You ask the same question twice and get different answers. Why?',opts:['The model was updated in between','The reply is drawn from probabilities','Someone edited the answer'],ans:1,why:'Each reply is a new random draw from the same probabilities. Setting the temperature to 0 makes it consistent, not correct.'},
+ {q:'An assistant searched your documents and quotes one of them. The answer is…',opts:['Correct, because it has a source','Only as good as the document it found','Copied from the training data'],ans:1,why:'The reply follows whatever the search put in the window, including outdated or unrelated documents. Check the source and its date.'},
+ {q:'A tool got a task right in 4 of 5 tries. Can you say it works 80% of the time?',opts:['Yes','No, five tries leave a wide range','Only if the task is easy'],ans:1,why:'With 5 tries, 4 correct gives a 95% interval from about 38% to 96%.'},
 ];
 function initCheck(){document.querySelectorAll('#check button').forEach(b=>b.onclick=()=>{const q=+b.dataset.q,j=+b.dataset.j,c=CHECK[q];b.parentElement.querySelectorAll('button').forEach(x=>{x.setAttribute('aria-pressed',x===b);x.disabled=true});const a=$('#ans'+q);a.className='ans show';a.innerHTML=(j===c.ans?'<b>Right.</b> ':`<b>The answer is “${c.opts[c.ans]}”.</b> `)+c.why})}
-const INIT={discussion:initCheck,beyond:initBeyond,permissions:initPermissions,code:initCode,attention:initAttention,tokens:initTokens,prediction:initPrediction,sampling:initSampling,training:initTraining,retrieval:initRetrieval,agents:initAgents,evaluation:initEvaluation};
-const ALIAS={attn:'attention',bigrams:'prediction',train:'training',rag:'retrieval',cars:'evaluation',resources:'discussion'};
+const INIT={discussion:initCheck,beyond:initBeyond,attention:initAttention,tokens:initTokens,prediction:initPrediction,sampling:initSampling,training:initTraining,retrieval:initRetrieval,agents:initAgents,evaluation:initEvaluation};
+const ALIAS={attn:'attention',bigrams:'prediction',train:'training',rag:'retrieval',cars:'evaluation',resources:'discussion',permissions:'agents',code:'agents'};
+
 function render(){let id=location.hash.slice(1)||'home';id=ALIAS[id]||id;if(!V[id])id='home';nav(id);$('#view').innerHTML=V[id]();initPredict(id);INIT[id]?.();window.scrollTo(0,0);const h=$('#view h1');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}document.title=(id==='home'?'':NAME[id]+' – ')+'Language Model Lab'}
 addEventListener('hashchange',render);render();
 </script>
